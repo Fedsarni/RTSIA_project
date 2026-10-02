@@ -1,0 +1,14 @@
+# B5 - Isolation on the most harmful stressors (to be confirmed after B4).
+# pin = models on cores 0-7, stressor on 8-11; prio = SCHED_FIFO on models (needs 'sudo -v' first).
+# systems      stress        level  isolation  reps  duration_s  freq_hz
+semif          cpu_matrix    12     pin        3     180         2
+semif          cpu_matrix    12     prio       3     180         2
+semif          cpu_matrix    12     pin_prio   3     180         2
+semif          mem_stream    12     pin        3     180         2
+semif          mem_stream    12     prio       3     180         2
+semif          mem_stream    12     pin_prio   3     180         2
+# Gemma under CPU saturation: can isolation protect the llama.cpp host thread
+# that feeds the GPU (the 'control path' slowdown seen in the reference project)?
+gemma          cpu_matrix    4      pin        3     300         2
+gemma          cpu_matrix    4      prio       3     300         2
+gemma          cpu_matrix    4      pin_prio   3     300         2

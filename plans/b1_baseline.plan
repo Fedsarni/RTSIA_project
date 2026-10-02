@@ -1,0 +1,6 @@
+# B1 - Baseline: each system alone, no stress, no isolation.
+# systems      stress        level  isolation  reps  duration_s  freq_hz
+semif          none          0      none       5     180         2
+gemma          none          0      none       5     600         2
+# Control arm (generative Qwen3.5-4B, llama-server on port 8081): uncomment if time allows.
+# qwen         none          0      none       3     300         2
