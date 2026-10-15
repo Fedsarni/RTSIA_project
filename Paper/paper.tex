@@ -1,369 +1,546 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
-%Template version as of 6/27/2024
-
-\usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\babelprovide[import,main]{italian}
+\usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{xcolor}
-\usepackage{float}
-\usepackage{tabularx}
-\usepackage{booktabs}
-\usepackage{array}
-\usepackage{listings}
-\usepackage{xcolor}
-
-\lstdefinelanguage{json}{
-    basicstyle=\small\ttfamily,
-    numbers=left,
-    numberstyle=\tiny\color{gray},
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{black!5},
-    stringstyle=\color{blue},
-    literate=
-     *{0}{{{\color{darkgray}0}}}{1}
-      {1}{{{\color{darkgray}1}}}{1}
-      {2}{{{\color{darkgray}2}}}{1}
-      {3}{{{\color{darkgray}3}}}{1}
-      {4}{{{\color{darkgray}4}}}{1}
-      {5}{{{\color{darkgray}5}}}{1}
-      {6}{{{\color{darkgray}6}}}{1}
-      {7}{{{\color{darkgray}7}}}{1}
-      {8}{{{\color{darkgray}8}}}{1}
-      {9}{{{\color{darkgray}9}}}{1}
-      {:}{{{\color{red}{:}}}}{1}
-      {,}{{{\color{red}{,}}}}{1}
-      {\{}{{{\color{teal}{\{}}}}{1}
-      {\}}{{{\color{teal}{\}}}}}{1}
-      {[}{{{\color{teal}{[}}}}{1}
-      {]}{{{\color{teal}{]}}}}{1},
-}
-
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\usepackage{booktabs,tabularx,array}
+\usepackage{listings,xcolor}
+\usepackage[section]{placeins}
+\usepackage{flafter}
+\usepackage{balance}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\lstset{basicstyle=\ttfamily\scriptsize,breaklines=true,columns=fullflexible,
+ keepspaces=true,showstringspaces=false,frame=single,captionpos=b}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\renewcommand{\IEEEkeywordsname}{Parole chiave}
+\renewcommand{\lstlistingname}{Listato}
 \begin{document}
-
-\title{SLM Isolation Assessment\\
-}
-
+\raggedbottom
+\title{SLM isolation assessment su NVIDIA Orin AGX}
 \author{\IEEEauthorblockN{Sarnataro Federica M63001769}
 \IEEEauthorblockA{fed.sarnatero@studenti.unina.it}
-\and
-\IEEEauthorblockN{Tafuri Francesco M63001712}
-\IEEEauthorblockA{fran.tafuri@studenti.unina.it}
-}
-
+\and\IEEEauthorblockN{Tafuri Francesco M63001712}
+\IEEEauthorblockA{fran.tafuri@studenti.unina.it}}
 \maketitle
-
 \begin{abstract}
-
-    L'abstract deve introdurre il problema dell'esecuzione dei modelli in locale in ambito real time,
-    spiegare dove gli llm possono essere utili nei sistemi embedded, con particolare riferimento ai compiti che 
-    prevedono prendere decisioni. 
-    Inoltre bisogna introdurre quali sono i problemi da affrontare nel deployment dei modelli su dispositivi 
-    embedded, con particolare attenzione sulla necessità di avere garanzie di tipo real time 
-    e perché sono necessari i meccanismi di isolamento. Spiegare l'approccio che abbiamo utilizzato, relativo al confronto tra 
-    due modelli basati su LLM, uno puro (Gemma) l'altro che funziona come decision model appartenente 
-    alla stessa categoria di jev.
-    
+L'impiego di modelli linguistici nei sistemi embedded consente di interpretare lo stato dell'ambiente e supportare decisioni operative, ma richiede latenze contenute e tempi di risposta prevedibili. La generazione autoregressiva dei modelli tradizionali introduce costi di decodifica e sensibilità alla contesa delle risorse, che ne limitano l'impiego nelle applicazioni real-time. Il paradigma System One, proposto da TypeSafe per Jev, privilegia decisioni strutturate e probabilistiche rispetto alla produzione di testo libero. In questo lavoro si valuta SemIf-OpenJev, un'implementazione aperta e indipendente di tale interfaccia decisionale, basata su Qwen3.5 4B in BF16. In modalità diretta, il sistema esegue un singolo passaggio del modello e normalizza i logit dei token associati alle alternative ammesse, senza generare token di risposta. Il confronto con Gemma 4 31B quantizzato a 8 bit, impiegato come sistema generativo di tipo System Two, analizza l'efficacia di questa modalità decisionale e dell'isolamento della CPU. La metodologia utilizza NVIDIA Jetson AGX Orin e un'infrastruttura ROS 2 per simulare le decisioni di un robot mobile. Cinque blocchi sperimentali misurano latenza end-to-end, tempi di inferenza, variabilità e accuratezza in esecuzione individuale, co-locazione e presenza di interferenze, con e senza isolamento. SemIf presenta maggiore rapidità e minore variabilità assoluta, a fronte di un'accuratezza talvolta inferiore; il pinning sui core isolati attenua le interferenze CPU, mentre permane la contesa della GPU.
 \end{abstract}
-
 \begin{IEEEkeywords}
-system one, system two 
+modelli linguistici, sistemi embedded, isolamento, latenza, ROS 2, inferenza su GPU
 \end{IEEEkeywords}
 
-\section{Infrastruttura}
-L'obiettivo è quello di confrontare due modelli basati su due approcci differenti, definiti \textbf{system one e system two}
-in termini di: \textbf{responsività, stabilità, accuratezza e sensibilità alle interferenze}: 
-\begin{itemize}
-    \item \textbf{Gemma 4 31B} quantizzato ad 8 bit: si tratta di un LLM classico 
-    costituisce l'approccio \textit{System two} 
-    \item \textbf{Semif OpenJev} basato su Qwen 3.5 4B non quantizzato: Si tratta di un 
-    LLM in cui è stato rimosso il layer autoencoder, al fine di leggere in output direttamente le probabilità dei logi,
-    costituisce l'approcco \textit{System One}
-\end{itemize}
 
-La differenza tra sistemi di tipo \textit{System One} e \textit{System Two}, proviene 
-dalla psicologia, si tratta della classificazione effettuata da Daniel Kahneman nel suo saggio
-"\text{Thinking fast and slow}". L'utilizzo di questa classificazione nell'ambito dell'intelligenza artificiale
-lo si deve al team di \textit{Typesafe AI} che nel descrivere le peculiarità del loro primo modello Jev, definisce gli LLM tradizionali di tipo \textit{System Two} ovvero 
-sistemi molto precisi, ma lenti nel fornire una risposta, in contrapposizione ai moodelli di tipo 
-\textit{System One}, cui Jev appartiene, molto rapidi nel prendere decisioni, ma meno precisi.
+\FloatBarrier
+\section{Infrastruttura}\label{sec:infra}
 
-\begin{table}[H]
-  \centering
-  \caption{Differenze tra i modelli}
+\FloatBarrier
+\subsection{Obiettivo e scenario}
+L'obiettivo è confrontare due approcci all'impiego di modelli linguistici in termini di responsività, stabilità, accuratezza e sensibilità alle interferenze. TypeSafe introduce la categoria \emph{System One Models} presentando Jev: sistemi che ricevono uno stato e restituiscono decisioni probabilistiche con tipi e alternative definiti dall'applicazione~\cite{typesafe}. La denominazione richiama la distinzione di Kahneman tra pensiero rapido e ragionamento deliberato. Nel presente confronto, \emph{System One} identifica l'interfaccia decisionale diretta di SemIf, mentre \emph{System Two} identifica l'impiego generativo di Gemma; si tratta di una distinzione operativa, che non implica una classificazione universale delle architetture.
+SemIf, precedentemente denominato OpenJev, è un progetto aperto e indipendente che riproduce il paradigma di interfaccia di Jev mediante modelli a pesi aperti. Non è una distribuzione ufficiale del modello proprietario di TypeSafe e non ne replica l'architettura o l'addestramento~\cite{openjev}.
+Lo scenario consiste nel controllo decisionale simulato di un robot mobile. A partire dalla distanza dall'ostacolo, dalla temperatura del motore e dalla velocità, il modello seleziona una delle azioni \code{proceed}, \code{slow_down} e \code{stop}. L'azione attesa è \code{stop} quando la distanza è inferiore a 0,5 m oppure la temperatura supera 90~$^\circ$C; in assenza di tali condizioni, è \code{slow_down} quando la distanza è inferiore a 1,5 m oppure la temperatura supera 75~$^\circ$C; negli altri casi è \code{proceed}.
+Il requisito applicativo è di natura real-time. La valutazione sperimentale caratterizza il comportamento temporale dei modelli; i massimi osservati non costituiscono limiti superiori garantiti del tempo di esecuzione.
+\FloatBarrier
+\subsection{Differenze tra i modelli}
+La Tabella~\ref{tab:models} riassume le configurazioni. Gemma 4 appartiene alla famiglia di modelli generativi a pesi aperti di Google; la variante 31B adotta un'architettura densa~\cite{gemma-core,gemma-card}. Nella configurazione sperimentale, Gemma elabora l'ingresso nella fase di \emph{prefill} e produce la risposta nella fase di \emph{decode}.
+SemIf utilizza invece Qwen3.5 4B con pesi congelati. In modalità \code{direct}, costruisce un prompt con stato, criterio e alternative, esegue un singolo passaggio e applica una softmax ai logit dei token-lettera associati alle opzioni. Non campiona token di risposta e non esegue un ciclo di decodifica~\cite{openjev-method}. Le probabilità sono condizionate alle alternative ammesse; non equivalgono automaticamente a una confidenza calibrata. Il risultato è serializzato in JSON dal software applicativo.
+Il confronto coinvolge modelli di dimensione, precisione numerica e motore di esecuzione differenti: le differenze osservate non possono essere attribuite esclusivamente alla modalità di produzione dell'output.
+
+\begin{table}[!htbp]
+\centering
+\caption{Caratteristiche dei modelli confrontati.}\label{tab:models}
+\footnotesize
+
 \begin{tabularx}{\columnwidth}{l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
-  \toprule
-  & \textbf{Gemma} & \textbf{Semif} \\ 
-  \midrule
-  \textbf{input} & Testo in linguaggio naturale non strutturato & Testo strutturato in JSON, con stato e tag tra cui scegliere \\ 
-  \textbf{Output} & Testo in linguaggio naturale & Probabilità del tag scelto e confidenza \\ 
-  \textbf{Engine} & llama.cpp su GPU & PyTorch su GPU \\ 
-  \textbf{Modello di base} & Gemma 4 31B, quantizzato a 8 bi & Qwen3.5 4B, non quantizzato (BF16) \\ 
-  \bottomrule
+\toprule
+Aspetto & Gemma & SemIf \\
+\midrule
+Input & Prompt testuale con domanda, stato e azioni & Stato, criterio e alternative descritte in JSON \\
+Output & Testo generato, vincolato a uno schema JSON & Probabilità condizionate delle alternative e scelta \\
+Motore & llama.cpp su GPU & PyTorch su GPU \\
+Modello di base & Gemma 4 31B, quantizzato a 8 bit & Qwen3.5 4B, non quantizzato (BF16) \\
+\bottomrule
 \end{tabularx}
 \end{table}
-La differenza sostanziale tra i due modelli, è che non disponendo del layer autoencoder, Semif a differenza 
-di Gemma, non attraversa la fase di decode per fornire il risultato dell'inferenza, ma elabora in parallelo tutti 
-i token dell'input e fornisce la risposta. 
 
-\section{Hardware e software}
-La piattaforma su cui sono stati eseguiti gli esperimenti, è la Nvidia Jetson AGX Orin, equipaggiata 
-con 64GB di RAM LPDDR5 condivisa tra CPU e GPU. Sulla board è installato il sistema operativo Ubuntu 22.04 CUDA
-con installato Jetpack 6.2.1. Il middleware utilizzato per la comunicazione tra sensori e modelli è ROS 2 Humble. 
-Per l'esecuzione dei modelli, è stato usato pytorch per lanciare l'inferenza con Semif, mentre l'engine llama.cpp 
-è stato usato per lanciare l'inferenza con Gemma. Infine per testare i modelli in presenza di workload paralleli
-è stata usata la suite stress-ng, per la generazione dei workload. 
+\FloatBarrier
+\subsection{Hardware e software}
+La piattaforma è una NVIDIA Jetson AGX Orin con 64 GB di memoria LPDDR5 condivisa tra CPU e GPU, CPU a 12 core Cortex-A78AE e GPU Ampere. La configurazione software è riportata nella Tabella~\ref{tab:platform}. I benchmark sono condotti con profilo energetico MAXN e frequenze di CPU e GPU impostate al massimo tramite \code{jetson_clocks}. I carichi non real-time sono generati mediante \code{stress-ng}; i carichi real-time mediante \code{rt-app}.
 
-\section{Scenario di test hard real time ed infrastruttura software}
- Ciascun modello prende decisioni per un robot a guida autonoma sulla base dei dati letti dai sensori: 
-velocità, distanza dall'ostacolo e temperatura del motore. 
-Le azioni possibili sono \texttt{proceed}, \texttt{slow\_down} e \texttt{stop}.
-I modelli in oltre possono eseguire singolarmente o in contemporanea, operando sugli stessi dati.
+\begin{table}[!htbp]
+\centering
+\caption{Piattaforma hardware e software utilizzata per i benchmark.}\label{tab:platform}
+\footnotesize
 
-L'ambiente di test simulato è costituito da 4 nodi ROS: 
-
-\begin{itemize}
-\item \textit{sensor\_sim} è il nodo che simula il campionamento dei sensori e pubblica sul topic \texttt{/sensors}
-\item \textit{llm\_gen\_node} si occupa di leggere i dati dal topic \texttt{/sensors} e di effettuarne il parsing per Gemma e pubblica il risultato dell'inferenza sul topic \texttt{/decisions/gemma}
-\item \textit{semif\_node} legge i dati dei sensori sul topic \texttt{/sensors} e ne effettua il parsing per semif e pubblica i risultati dell'inferenza sul topic \texttt{/decisions/semif}
-\item \textit{logger\_node} legge i dati dai topic legge i dati dai topic \texttt{/decisions/gemma} e \texttt{/decisions/semif} e scrive le statistiche in un file \texttt{.csv}
-\end{itemize}
-
-
-\begin{figure}[H]
-\centerline{\includegraphics[width=0.4\textwidth]{./plots/rtsia.drawio.png}}
-\caption{schema nodi in diverse configurazioni.}
-\label{fig}
-\end{figure}
-
-\subsection{Formato dei messaggi ROS}
-I messaggi pubblicati da \textit{sensor\_sim} sul suo topic hanno il seguente formato
-\lstinputlisting[language=json]{./Data/sensorsMsg.json}
-
-
-
-
-
-
-
-
-
-
-\section{Prepare Your Paper Before Styling}
-Before you begin to format your paper, first write and save the content as a 
-separate text file. Complete all content and organizational editing before 
-formatting. Please note sections \ref{AA} to \ref{FAT} below for more information on 
-proofreading, spelling and grammar.
-
-Keep your text and graphic files separate until after the text has been 
-formatted and styled. Do not number text heads---{\LaTeX} will do that 
-for you.
-
-\subsection{Abbreviations and Acronyms}\label{AA}
-Define abbreviations and acronyms the first time they are used in the text, 
-even after they have been defined in the abstract. Abbreviations such as 
-IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
-abbreviations in the title or heads unless they are unavoidable.
-
-\subsection{Units}
-\begin{itemize}
-\item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as ``3.5-inch disk drive''.
-\item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
-\item Do not mix complete spellings and abbreviations of units: ``Wb/m\textsuperscript{2}'' or ``webers per square meter'', not ``webers/m\textsuperscript{2}''. Spell out units when they appear in text: ``. . . a few henries'', not ``. . . a few H''.
-\item Use a zero before decimal points: ``0.25'', not ``.25''. Use ``cm\textsuperscript{3}'', not ``cc''.)
-\end{itemize}
-
-\subsection{Equations}
-Number equations consecutively. To make your 
-equations more compact, you may use the solidus (~/~), the exp function, or 
-appropriate exponents. Italicize Roman symbols for quantities and variables, 
-but not Greek symbols. Use a long dash rather than a hyphen for a minus 
-sign. Punctuate equations with commas or periods when they are part of a 
-sentence, as in:
-\begin{equation}
-a+b=\gamma\label{eq}
-\end{equation}
-
-Be sure that the 
-symbols in your equation have been defined before or immediately following 
-the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
-the beginning of a sentence: ``Equation \eqref{eq} is . . .''
-
-\subsection{\LaTeX-Specific Advice}
-
-Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
-of ``hard'' references (e.g., \verb|(1)|). That will make it possible
-to combine sections, add equations, or change the order of figures or
-citations without having to go through the file line by line.
-
-Please don't use the \verb|{eqnarray}| equation environment. Use
-\verb|{align}| or \verb|{IEEEeqnarray}| instead. The \verb|{eqnarray}|
-environment leaves unsightly spaces around relation symbols.
-
-Please note that the \verb|{subequations}| environment in {\LaTeX}
-will increment the main equation counter even when there are no
-equation numbers displayed. If you forget that, you might write an
-article in which the equation numbers skip from (17) to (20), causing
-the copy editors to wonder if you've discovered a new method of
-counting.
-
-{\BibTeX} does not work by magic. It doesn't get the bibliographic
-data from thin air but from .bib files. If you use {\BibTeX} to produce a
-bibliography you must send the .bib files. 
-
-{\LaTeX} can't read your mind. If you assign the same label to a
-subsubsection and a table, you might find that Table I has been cross
-referenced as Table IV-B3. 
-
-{\LaTeX} does not have precognitive abilities. If you put a
-\verb|\label| command before the command that updates the counter it's
-supposed to be using, the label will pick up the last counter to be
-cross referenced instead. In particular, a \verb|\label| command
-should not go before the caption of a figure or a table.
-
-Do not use \verb|\nonumber| inside the \verb|{array}| environment. It
-will not stop equation numbers inside \verb|{array}| (there won't be
-any anyway) and it might stop a wanted equation number in the
-surrounding equation.
-
-\subsection{Some Common Mistakes}\label{SCM}
-\begin{itemize}
-\item The word ``data'' is plural, not singular.
-\item The subscript for the permeability of vacuum $\mu_{0}$, and other common scientific constants, is zero with subscript formatting, not a lowercase letter ``o''.
-\item In American English, commas, semicolons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
-\item A graph within a graph is an ``inset'', not an ``insert''. The word alternatively is preferred to the word ``alternately'' (unless you really mean something that alternates).
-\item Do not use the word ``essentially'' to mean ``approximately'' or ``effectively''.
-\item In your paper title, if the words ``that uses'' can accurately replace the word ``using'', capitalize the ``u''; if not, keep using lower-cased.
-\item Be aware of the different meanings of the homophones ``affect'' and ``effect'', ``complement'' and ``compliment'', ``discreet'' and ``discrete'', ``principal'' and ``principle''.
-\item Do not confuse ``imply'' and ``infer''.
-\item The prefix ``non'' is not a word; it should be joined to the word it modifies, usually without a hyphen.
-\item There is no period after the ``et'' in the Latin abbreviation ``et al.''.
-\item The abbreviation ``i.e.'' means ``that is'', and the abbreviation ``e.g.'' means ``for example''.
-\end{itemize}
-An excellent style manual for science writers is \cite{b7}.
-
-\subsection{Authors and Affiliations}\label{AAA}
-\textbf{The class file is designed for, but not limited to, six authors.} A 
-minimum of one author is required for all conference articles. Author names 
-should be listed starting from left to right and then moving down to the 
-next line. This is the author sequence that will be used in future citations 
-and by indexing services. Names should not be listed in columns nor group by 
-affiliation. Please keep your affiliations as succinct as possible (for 
-example, do not differentiate among departments of the same organization).
-
-\subsection{Identify the Headings}\label{ITH}
-Headings, or heads, are organizational devices that guide the reader through 
-your paper. There are two types: component heads and text heads.
-
-Component heads identify the different components of your paper and are not 
-topically subordinate to each other. Examples include Acknowledgments and 
-References and, for these, the correct style to use is ``Heading 5''. Use 
-``figure caption'' for your Figure captions, and ``table head'' for your 
-table title. Run-in heads, such as ``Abstract'', will require you to apply a 
-style (in this case, italic) in addition to the style provided by the drop 
-down menu to differentiate the head from the text.
-
-Text heads organize the topics on a relational, hierarchical basis. For 
-example, the paper title is the primary text head because all subsequent 
-material relates and elaborates on this one topic. If there are two or more 
-sub-topics, the next level head (uppercase Roman numerals) should be used 
-and, conversely, if there are not at least two sub-topics, then no subheads 
-should be introduced.
-
-\subsection{Figures and Tables}\label{FAT}
-\paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
-bottom of columns. Avoid placing them in the middle of columns. Large 
-figures and tables may span across both columns. Figure captions should be 
-below the figures; table heads should appear above the tables. Insert 
-figures and tables after they are cited in the text. Use the abbreviation 
-``Fig.~\ref{fig}'', even at the beginning of a sentence.
-
-\begin{table}[htbp]
-\caption{Table Type Styles}
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
-\cline{2-4} 
-\textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
-\hline
-copy& More table copy$^{\mathrm{a}}$& &  \\
-\hline
-\multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
-\end{tabular}
-\label{tab1}
-\end{center}
+\begin{tabularx}{\columnwidth}{l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Categoria & Componente & Ruolo \\
+\midrule
+Hardware & Jetson AGX Orin 64 GB — memoria LPDDR5 condivisa; CPU ARM A78 a 12 core; GPU GA10B, architettura Ampere & Piattaforma dei benchmark \\
+Sistema & JetPack 6.2.1 (L4T 36.4.7), Ubuntu 22.04, CUDA & Driver e librerie GPU \\
+Middleware & ROS 2 Humble & Collega sensori, modelli e logger come processi separati \\
+System One & SemIf-OpenJev, backend PyTorch, modalità direct & Esecuzione dell’approccio SemIf \\
+System One & PyTorch per Jetson & Esecuzione di SemIf sulla GPU \\
+System Two & llama.cpp, compilato da sorgente con CUDA per Orin & Motore per Gemma \\
+System Two & Gemma 4 31B & Modello generativo confrontato \\
+Interferenze & stress-ng & Generazione del carico per B3 e B4 \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=0.5\textwidth]{/home/t480s/Documents/RTSIA_project/Paper/plots/b1/boxplot_latenza_e2e_singoli.png}}
-\caption{Example of a figure caption.}
-\label{fig}
+Il carico aggiuntivo è generato nei blocchi B3 e B4; B5 considera la co-locazione senza stressori aggiuntivi.
+\FloatBarrier
+\subsection{Architettura ROS e flusso dei dati}
+Il sistema comprende quattro nodi ROS 2 Humble, illustrati in Fig.~\ref{fig:ros}. Il nodo \code{sensor_sim} genera campioni pseudo-casuali con seme fisso 42 e li pubblica su \code{/sensors}. Il nodo \code{semif_node} adatta il campione al formato strutturato di SemIf e invoca il modello mediante un thread di lavoro; \code{llm_gen_node} costruisce una richiesta HTTP per il server \code{llama.cpp}. Le risposte sono pubblicate rispettivamente su \code{/decisions/semif} e \code{/decisions/gemma}. Infine, \code{logger_node} registra le decisioni e le misure temporali in file CSV.
+I modelli possono essere eseguiti singolarmente o simultaneamente, elaborando lo stesso flusso di dati. La frequenza nominale del sensore è pari a 2 Hz; tale valore non coincide necessariamente con la frequenza delle decisioni completate.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/0_infrastruttura/rtsia.drawio.png}
+\caption{Architettura ROS e collegamenti tra sensori simulati, modelli e logger.}\label{fig:ros}
 \end{figure}
 
-Figure Labels: Use 8 point Times New Roman for Figure labels. Use words 
-rather than symbols or abbreviations when writing Figure axis labels to 
-avoid confusing the reader. As an example, write the quantity 
-``Magnetization'', or ``Magnetization, M'', not just ``M''. If including 
-units in the label, present them within parentheses. Do not label axes only 
-with units. In the example, write ``Magnetization (A/m)'' or ``Magnetization 
-\{A[m(1)]\}'', not just ``A/m''. Do not label axes with a ratio of 
-quantities and units. For example, write ``Temperature (K)'', not 
-``Temperature/K''.
+\FloatBarrier
+\subsection{Formato dei messaggi e richieste}
+Il messaggio del sensore contiene il numero di sequenza, l'istante di generazione, l'azione attesa e una riga strutturata con stato, domanda e alternative. Il Listato~\ref{lst:sensor} ne illustra la struttura; le stringhe descrittive rappresentano segnaposto per i valori generati durante l'esecuzione. I testi delle alternative sono espressi in inglese, secondo il protocollo di interazione con i modelli.
+\lstinputlisting[caption={Struttura del messaggio del sensore.},label={lst:sensor}]{Data/sensorsMsg.json}
+SemIf riceve soltanto il campo \code{row} del messaggio, contenente \code{id}, \code{state}, \code{question} e \code{options}. Tale payload è riportato nel Listato~\ref{lst:semif}. Per Gemma, il nodo prepara la richiesta del Listato~\ref{lst:gemma}, con temperatura nulla, limite di 32 token e schema JSON che vincola l'azione alle tre alternative. Il vincolo sintattico non garantisce la correttezza semantica della decisione.
+\lstinputlisting[caption={Payload strutturato inviato a SemIf.},label={lst:semif}]{Data/semifPayload.json}
+\lstinputlisting[caption={Richiesta al server llama.cpp.},label={lst:gemma}]{Data/gemmaRequest.json}
+I messaggi di risposta includono gli istanti di generazione, ingresso e uscita, l'azione prodotta, quella attesa e le statistiche di inferenza. Il campo \code{dropped} registra il numero di messaggi scartati.
+\lstinputlisting[caption={Struttura della risposta dei nodi decisionali.},label={lst:decision}]{Data/decisionMsg.json}
+\FloatBarrier
+\subsection{Metriche e piano di confronto}
+La latenza end-to-end, espressa in millisecondi, è definita come
+\begin{equation}
+L_{\mathrm{e2e}}=\frac{t_{\mathrm{out,ns}}-t_{\mathrm{gen,ns}}}{10^6}.
+\end{equation}
+Per distinguere l'attesa precedente all'invocazione dall'elaborazione del modello, si considera inoltre l'intervallo
+\begin{equation}
+L_{\mathrm{inf}}=\frac{t_{\mathrm{out,ns}}-t_{\mathrm{in,ns}}}{10^6}.
+\end{equation}
+Quest'ultimo può includere costi di invocazione e comunicazione; non rappresenta necessariamente il solo tempo dei kernel GPU. L'accuratezza confronta l'azione prodotta con quella attesa. Sono inoltre analizzate la composizione prefill/decode, le latenze di coda e la variabilità temporale. Il confronto considera sia la variabilità assoluta, espressa dal jitter, sia quella relativa, espressa dal coefficiente di variazione.
+La Tabella~\ref{tab:blocks} organizza i cinque blocchi sperimentali, B1--B5. I piani successivi riportano sistema, stressore, livello configurato, modalità di isolamento, ripetizioni, durata della singola esecuzione e frequenza nominale dei sensori. Il campo livello indica l'intensità configurata del carico e non coincide necessariamente con il numero di worker effettivamente attivi.
 
-\section*{Acknowledgment}
+\begin{table}[!htbp]
+\centering
+\caption{Blocchi sperimentali e fattori variati.}\label{tab:blocks}
+\footnotesize
 
-The preferred spelling of the word ``acknowledgment'' in America is without 
-an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
-G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
-acknowledgments in the unnumbered footnote on the first page.
+\begin{tabularx}{\columnwidth}{l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Blocco & Domanda & Parametri variati \\
+\midrule
+B1 Baseline & Come si comportano i due modelli quando eseguono singolarmente sul sistema e non vi è isolamento delle risorse & nessun parametro \\
+B2 Co-locazione & Cosa succede quando i due modelli quando eseguono in contemporanea, o più in generale cosa accade quando i modelli girano in parallelo ad un carico sulla GPU & Uno o due modelli attivi \\
+B3 Interferenze & Come degradano le prestazioni dei modelli quando sono presenti altri tipi di workload, sulla cpu, sulla memoria, o real time & Tipo di stress \\
+B4 Isolamento & Come migliorano le prestazioni in presenza di altri workload, sfruttando le tecniche di isolamento & Tipo di stress e tecnica di isolamento \\
+B5 Isolamento singolo & Come migliorano le prestazioni dei singoli modelli in colocation, applicando l’isolamento solo ad un modello alla volta & Tipo di stress, modello isolato \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\section*{References}
+\FloatBarrier
+\section{B1. Baseline}\label{sec:b1}
 
-Please number citations consecutively within brackets \cite{b1}. The 
-sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
-number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
-the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
+\FloatBarrier
+\subsection{Piano sperimentale}
+B1 determina il comportamento di riferimento dei modelli eseguiti singolarmente, in assenza di carichi concorrenti e di isolamento. Il piano prevede cinque ripetizioni per modello, con durata di 180 s per SemIf e 600 s per Gemma (Tabella~\ref{tab:b1}).
 
-Number footnotes separately in superscripts. Place the actual footnote at 
-the bottom of the column in which it was cited. Do not put footnotes in the 
-abstract or reference list. Use letters for table footnotes.
+\begin{table}[!htbp]
+\centering
+\caption{Piano sperimentale B1: esecuzione individuale senza isolamento.}\label{tab:b1}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lllllll}
+\toprule
+Sistema & Carico & Liv. & Isolamento & Rep. & $t$ (s) & $f$ (Hz) \\
+\midrule
+semif & none & 0 & none & 5 & 180 & 2 \\
+gemma & none & 0 & none & 5 & 600 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Unless there are six authors or more give all authors' names; do not use 
-``et al.''. Papers that have not been published, even if they have been 
-submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
-that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
-Capitalize only the first word in a paper title, except for proper nouns and 
-element symbols.
+\FloatBarrier
+\subsection{Latenza end-to-end e stabilità}
+I boxplot di Fig.~\ref{fig:b1e2e} mostrano ordini di grandezza differenti: SemIf opera nell'intervallo delle centinaia di millisecondi, mentre Gemma richiede migliaia di millisecondi. SemIf presenta una dispersione assoluta contenuta attorno alla mediana. Per Gemma si osservano scostamenti dell'ordine di 500 ms e valori anomali prossimi a 9 s. Le latenze di coda in Fig.~\ref{fig:b1tail} confermano la maggiore variabilità assoluta di Gemma.
 
-For papers published in translation journals, please give the English 
-citation first, followed by the original foreign-language citation \cite{b6}.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b1_baseline/boxplot_latenza_e2e_singoli.png}
+\caption{B1: distribuzioni della latenza end-to-end dei modelli eseguiti singolarmente.}\label{fig:b1e2e}
+\end{figure}
 
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b1_baseline/tail_latencies.png}
+\caption{B1: confronto delle latenze di coda.}\label{fig:b1tail}
+\end{figure}
+
+\FloatBarrier
+\subsection{Composizione del tempo di elaborazione}
+La Fig.~\ref{fig:b1phases} evidenzia il costo della fase di decode di Gemma. Anche limitando il confronto alla fase di prefill, SemIf presenta tempi inferiori. Il tempo di inferenza di SemIf a riposo è pari a circa 238 ms.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b1_baseline/Prefill_decode.png}
+\caption{B1: composizione dei tempi di elaborazione in prefill e decode.}\label{fig:b1phases}
+\end{figure}
+
+\FloatBarrier
+\subsection{Accuratezza}
+Il vantaggio temporale non coincide con una superiorità nell'accuratezza: la Fig.~\ref{fig:b1accuracy} documenta casi in cui SemIf è meno accurato di Gemma. Il confronto richiede pertanto di valutare congiuntamente correttezza e tempestività della decisione.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b1_baseline/accuracy.png}
+\caption{B1: accuratezza delle decisioni rispetto all’azione attesa.}\label{fig:b1accuracy}
+\end{figure}
+
+\FloatBarrier
+\section{B2. Co-locazione}\label{sec:b2}
+
+\FloatBarrier
+\subsection{Piano sperimentale}
+B2 valuta l'interferenza reciproca quando i due modelli condividono la GPU. SemIf e Gemma elaborano simultaneamente i dati dei sensori, senza isolamento e senza stressori aggiuntivi. Sono previste cinque ripetizioni da 600 s, come riportato nella Tabella~\ref{tab:b2}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Piano sperimentale B2: co-locazione sulla GPU.}\label{tab:b2}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lllllll}
+\toprule
+Sistema & Carico & Liv. & Isolamento & Rep. & $t$ (s) & $f$ (Hz) \\
+\midrule
+semif,gemma & none & 0 & none & 5 & 600 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+\subsection{Ritardo end-to-end e inferenza}
+Le Figg.~\ref{fig:b2e2e} e~\ref{fig:b2comparison} mostrano un incremento della latenza rispetto all'esecuzione individuale. SemIf risulta il modello maggiormente penalizzato in termini relativi. Una possibile interpretazione è la prolungata occupazione della GPU da parte di Gemma; tale ipotesi richiede una verifica mediante tracciamento dello scheduling dei kernel.
+La Fig.~\ref{fig:b2inf} considera l'intervallo di inferenza, separandolo dall'attesa precedente all'invocazione. Il peggioramento anche di questa metrica indica che il degrado non riguarda soltanto l'accumulo delle richieste.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b2_co_location/bp_latenzaE2E.png}
+\caption{B2: latenza end-to-end durante l’esecuzione simultanea.}\label{fig:b2e2e}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b2_co_location/boxplot_latenza_e2e_singoli.png}
+\caption{Distribuzioni della latenza end-to-end nell'esecuzione individuale, utilizzate come riferimento per B2.}\label{fig:b2comparison}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b2_co_location/boxplot_infer_ms.png}
+\caption{B2: distribuzioni della latenza di inferenza.}\label{fig:b2inf}
+\end{figure}
+
+\FloatBarrier
+\subsection{Stabilità}
+Nonostante il rallentamento, SemIf mantiene una variabilità assoluta inferiore. Il jitter è pari a 35,5 ms per SemIf e 780,5 ms per Gemma (Fig.~\ref{fig:b2jitter}).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b2_co_location/jitter_infer_ms.png}
+\caption{B2: jitter e variabilità dei tempi di inferenza.}\label{fig:b2jitter}
+\end{figure}
+
+\FloatBarrier
+\subsection{Fasi di elaborazione}
+Le Figg.~\ref{fig:b2phases} e~\ref{fig:b2decode} indicano che, per Gemma, la fase maggiormente penalizzata è il decode, con un incremento di circa 1691,3 ms rispetto alla baseline.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b2_co_location/Prefill_decode.png}
+\caption{Composizione dei tempi di prefill e decode nel confronto B2.}\label{fig:b2phases}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b2_co_location/decodePrefill.png}
+\caption{B2: confronto dei tempi di prefill e decode.}\label{fig:b2decode}
+\end{figure}
+
+\FloatBarrier
+\section{B3. Interferenze}\label{sec:b3}
+
+\FloatBarrier
+\subsection{Piano sperimentale}
+B3 introduce carichi concorrenti sulla CPU, sulla memoria e sulla cache, mantenendo disabilitato l'isolamento. Si utilizzano \code{stress-ng} per i carichi non real-time e \code{rt-app} per quelli real-time. Il piano di Tabella~\ref{tab:b3} prevede tre ripetizioni per configurazione, con durata di 180 s per SemIf e 300 s per Gemma.
+
+\begin{table}[!htbp]
+\centering
+\caption{Piano sperimentale B3: interferenze senza isolamento.}\label{tab:b3}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lllllll}
+\toprule
+Sistema & Carico & Liv. & Isolamento & Rep. & $t$ (s) & $f$ (Hz) \\
+\midrule
+semif & cpu\_matrix & 12 & none & 3 & 180 & 2 \\
+semif & mem\_stream & 12 & none & 3 & 180 & 2 \\
+semif & mem\_vm & 12 & none & 3 & 180 & 2 \\
+semif & cache\_l1 & 12 & none & 3 & 180 & 2 \\
+semif & sched\_switch & 12 & none & 3 & 180 & 2 \\
+semif & rtapp\_other & 11 & none & 3 & 180 & 2 \\
+semif & rtapp\_fifo60 & 11 & none & 3 & 180 & 2 \\
+semif & rtapp\_burst60 & 11 & none & 3 & 180 & 2 \\
+gemma & cpu\_matrix & 12 & none & 3 & 300 & 2 \\
+gemma & mem\_stream & 12 & none & 3 & 300 & 2 \\
+gemma & sched\_switch & 12 & none & 3 & 300 & 2 \\
+gemma & mem\_vm & 12 & none & 3 & 300 & 2 \\
+gemma & cache\_l1 & 12 & none & 3 & 300 & 2 \\
+gemma & rtapp\_other & 11 & none & 3 & 300 & 2 \\
+gemma & rtapp\_fifo60 & 11 & none & 3 & 300 & 2 \\
+gemma & rtapp\_burst60 & 11 & none & 3 & 300 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+\subsection{Degrado delle latenze e stabilità}
+I carichi più penalizzanti risultano \code{sched_switch}, \code{mem_stream} e \code{mem_vm}, come illustrato nelle Figg.~\ref{fig:b3inf} e~\ref{fig:b3e2e}. Nei test descritti, i carichi real-time producono perturbazioni più contenute. L'effetto di \code{sched_switch} è coerente con un aumento delle interruzioni dell'esecuzione dei thread CPU che orchestrano l'inferenza sulla GPU.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/boxplot_infer_ms.png}
+\caption{B3: latenza di inferenza in presenza dei diversi carichi concorrenti.}\label{fig:b3inf}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/boxplots_e2e.png}
+\caption{B3: latenza end-to-end in presenza di interferenze.}\label{fig:b3e2e}
+\end{figure}
+
+\FloatBarrier
+\subsection{Latenze di coda e stabilità}
+Le latenze di coda raggiungono circa 12 s per Gemma e 1,4 s per SemIf (Fig.~\ref{fig:b3tail}); per Gemma si osservano anche casi superiori a 12 s. Tali massimi osservati non costituiscono limiti superiori garantiti. La Fig.~\ref{fig:b3jitter} mostra che SemIf conserva una minore variabilità assoluta. Un coefficiente di variazione inferiore per Gemma non implicherebbe necessariamente oscillazioni assolute inferiori, poiché tale indicatore normalizza la dispersione rispetto alla media.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/tail_latencies.png}
+\caption{B3: latenze di coda sotto interferenza.}\label{fig:b3tail}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/jitter_infer_ms.png}
+\caption{B3: jitter e variabilità dell’inferenza sotto interferenza.}\label{fig:b3jitter}
+\end{figure}
+
+\FloatBarrier
+\subsection{Composizione dell'inferenza e utilizzo delle risorse}
+La Fig.~\ref{fig:b3phases} illustra la sensibilità delle fasi di elaborazione ai carichi concorrenti. Il decode di Gemma richiede accessi ripetuti ai parametri e può risentire della contesa della memoria condivisa. Tuttavia, non è possibile attribuire il degrado dei carichi di memoria alla sola saturazione della banda.
+Le Figg.~\ref{fig:b3semif} e~\ref{fig:b3gemma}, insieme alla Tabella~\ref{tab:resources}, mostrano un utilizzo elevato della CPU durante \code{mem_stream}. Per SemIf, l'utilizzo medio della GPU è circa 30--31\%, mentre quello della CPU supera il 93\%; per Gemma, la CPU è prossima al 100\% e la GPU presenta valori medi di circa 90--93\%. Queste osservazioni sono compatibili con interferenze nell'orchestrazione CPU dell'inferenza. La distinzione quantitativa tra effetti di scheduling, cache e banda richiederebbe misure dedicate.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/prefill_decode.png}
+\caption{B3: ripartizione dei tempi di prefill e decode.}\label{fig:b3phases}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/chart_memstream_model_semif.png}
+\caption{B3: andamento dell’utilizzo delle risorse per SemIf con carico mem\_stream.}\label{fig:b3semif}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b3_interference/chart_memstream_model_gemma.png}
+\caption{B3: andamento dell’utilizzo delle risorse per Gemma con carico mem\_stream.}\label{fig:b3gemma}
+\end{figure}
+
+\begin{table*}[!t]
+\centering
+\caption{Utilizzo delle risorse con mem\_stream senza isolamento; tutte le grandezze di utilizzo sono percentuali.}\label{tab:resources}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllllllll}
+\toprule
+Sistema & Isolamento & Interferenza & RAM media (\%) & RAM max (\%) & GPU media (\%) & GPU max (\%) & CPU media (\%) & CPU max (\%) \\
+\midrule
+Semif & none & mem\_stream & 82.97 & 83.23 & 31.42 & 87.2 & 93.57 & 100 \\
+Semif & none & mem\_stream & 83.38 & 83.73 & 31.07 & 98.7 & 93.43 & 100 \\
+Semif & none & mem\_stream & 83.13 & 83.46 & 30.51 & 98.7 & 93.66 & 100 \\
+Gemma & none & mem\_stream & 79.35 & 79.41 & 93.11 & 99.9 & 99.75 & 100 \\
+Gemma & none & mem\_stream & 79.36 & 79.42 & 89.98 & 99.9 & 99.74 & 100 \\
+Gemma & none & mem\_stream & 79.35 & 79.41 & 91.71 & 100 & 99.76 & 100 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\FloatBarrier
+\section{B4. Isolamento}\label{sec:b4}
+
+\FloatBarrier
+\subsection{Configurazione e piano sperimentale}
+B4 valuta tecniche di isolamento rispetto ai carichi maggiormente penalizzanti identificati in B3. La CPU della piattaforma comprende 12 core dello stesso tipo; non viene quindi adottata una distinzione tra core ad alte prestazioni e core ad alta efficienza.
+La configurazione adottata riserva i core 0--7 ai modelli e all'infrastruttura ROS, mediante \code{isolcpus}, \code{nohz_full} e \code{rcu_nocbs}, e indirizza le interruzioni ai core 8--11 con \code{irqaffinity=8-11}. Tali parametri mirano a ridurre le interferenze del kernel sui core riservati, ma non dimostrano da soli l'assenza di ogni interruzione o attività di sistema.
+Sono confrontate tre modalità: \code{pin}, ossia affinità dei processi ai core isolati; \code{prio}, ossia incremento della priorità; e \code{pin_prio}, ossia combinazione delle due tecniche. La Tabella~\ref{tab:b4} riporta il piano, con tre ripetizioni per configurazione.
+
+\begin{table}[!htbp]
+\centering
+\caption{Piano sperimentale B4: interferenze e tecniche di isolamento.}\label{tab:b4}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lllllll}
+\toprule
+Sistema & Carico & Liv. & Isolamento & Rep. & $t$ (s) & $f$ (Hz) \\
+\midrule
+semif & mem\_stream & 12 & pin & 3 & 180 & 2 \\
+semif & mem\_stream & 12 & prio & 3 & 180 & 2 \\
+semif & mem\_stream & 12 & pin\_prio & 3 & 180 & 2 \\
+semif & mem\_vm & 12 & pin & 3 & 180 & 2 \\
+semif & mem\_vm & 12 & prio & 3 & 180 & 2 \\
+semif & mem\_vm & 12 & pin\_prio & 3 & 180 & 2 \\
+semif & sched\_switch & 12 & pin & 3 & 180 & 2 \\
+semif & sched\_switch & 12 & prio & 3 & 180 & 2 \\
+semif & sched\_switch & 12 & pin\_prio & 3 & 180 & 2 \\
+gemma & mem\_stream & 12 & pin & 3 & 300 & 2 \\
+gemma & mem\_stream & 12 & prio & 3 & 300 & 2 \\
+gemma & mem\_stream & 12 & pin\_prio & 3 & 300 & 2 \\
+gemma & sched\_switch & 12 & pin & 3 & 300 & 2 \\
+gemma & sched\_switch & 12 & prio & 3 & 300 & 2 \\
+gemma & sched\_switch & 12 & pin\_prio & 3 & 300 & 2 \\
+gemma & mem\_vm & 12 & pin & 3 & 300 & 2 \\
+gemma & mem\_vm & 12 & prio & 3 & 300 & 2 \\
+gemma & mem\_vm & 12 & pin\_prio & 3 & 300 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+\subsection{Latenza end-to-end e inferenza}
+Le Figg.~\ref{fig:b4e2e} e~\ref{fig:b4inf} mostrano un recupero delle prestazioni verso i valori osservati a riposo. Il pinning sui core isolati risulta la tecnica più efficace tra quelle considerate, mentre il solo incremento della priorità produce benefici più limitati.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b4_isolation/Box_plots_e2e.png}
+\caption{B4: effetto delle tecniche di isolamento sulla latenza end-to-end.}\label{fig:b4e2e}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b4_isolation/boxplot_infer_ms.png}
+\caption{B4: effetto dell’isolamento sulla latenza di inferenza.}\label{fig:b4inf}
+\end{figure}
+
+\FloatBarrier
+\subsection{Latenze di coda e stabilità}
+Le latenze di coda e il jitter sono riportati nelle Figg.~\ref{fig:b4tail} e~\ref{fig:b4jitter}. Gemma conserva picchi che possono raggiungere circa 8 s, pur presentando una variabilità dell'inferenza più contenuta rispetto al caso senza isolamento. Per SemIf, il pinning limita le variazioni del jitter a pochi millisecondi.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b4_isolation/tail_latencies.png}
+\caption{B4: latenze di coda con isolamento.}\label{fig:b4tail}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b4_isolation/jitter_infer_ms.png}
+\caption{B4: jitter e variabilità dell’inferenza con isolamento.}\label{fig:b4jitter}
+\end{figure}
+
+\FloatBarrier
+\subsection{Interpretazione dei risultati}
+Il recupero osservato con carichi di memoria suggerisce un ruolo rilevante della contesa sui core CPU, oltre a quello della memoria condivisa. La separazione dei processi può ridurre le preemption e la perturbazione delle cache private. La banda nominale della memoria LPDDR5 è pari a 204,8 GB/s, mentre il traffico generato dai quattro worker effettivi sui core residui è stimato in circa 30 GB/s. Questi valori contestualizzano il risultato, ma non costituiscono una misura completa della contesa CPU/GPU.
+L'isolamento modifica anche le risorse CPU disponibili agli stressori: a parità di livello configurato, il carico effettivo può differire da B3. Il miglioramento non va quindi interpretato come effetto esclusivo dell'eliminazione dei cambi di contesto.
+
+\FloatBarrier
+\section{B5. Isolamento e co-locazione}\label{sec:b5}
+
+\FloatBarrier
+\subsection{Piano sperimentale}
+B5 verifica se le tecniche di isolamento della CPU migliorano il comportamento dei modelli in co-locazione sulla GPU. Sono considerate l'applicazione delle tecniche a entrambi i modelli e l'applicazione a un solo modello, identificata dai suffissi \code{@semif} e \code{@gemma}. Il piano comprende anche una configurazione senza isolamento e prevede tre ripetizioni da 300 s per ogni caso (Tabella~\ref{tab:b5}). Non sono introdotti stressori aggiuntivi.
+
+\begin{table}[!htbp]
+\centering
+\caption{Piano sperimentale B5: isolamento congiunto e selettivo in co-locazione.}\label{tab:b5}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lllllll}
+\toprule
+Sistema & Carico & Liv. & Isolamento & Rep. & $t$ (s) & $f$ (Hz) \\
+\midrule
+semif,gemma & none & 0 & pin & 3 & 300 & 2 \\
+semif,gemma & none & 0 & prio & 3 & 300 & 2 \\
+semif,gemma & none & 0 & pin\_prio & 3 & 300 & 2 \\
+semif,gemma & none & 0 & pin@semif & 3 & 300 & 2 \\
+semif,gemma & none & 0 & prio@semif & 3 & 300 & 2 \\
+semif,gemma & none & 0 & pin\_prio@semif & 3 & 300 & 2 \\
+semif,gemma & none & 0 & pin@gemma & 3 & 300 & 2 \\
+semif,gemma & none & 0 & prio@gemma & 3 & 300 & 2 \\
+semif,gemma & none & 0 & pin\_prio@gemma & 3 & 300 & 2 \\
+semif,gemma & none & 0 & none & 3 & 300 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+\subsection{Latenze e stabilità}
+Le distribuzioni delle Figg.~\ref{fig:b5inf} e~\ref{fig:b5e2e} non mostrano un miglioramento sostanziale delle latenze tra le tecniche considerate e il caso privo di isolamento.
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b5_isolation_co_location/boxplot_infer_ms.png}
+\caption{B5: latenza di inferenza con isolamento in co-locazione.}\label{fig:b5inf}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b5_isolation_co_location/Boxplots_e2e.png}
+\caption{B5: latenza end-to-end con isolamento in co-locazione.}\label{fig:b5e2e}
+\end{figure}
+
+\FloatBarrier
+\subsection{Latenze di coda e stabilità}
+Le latenze di coda e il jitter (Figg.~\ref{fig:b5tail} e~\ref{fig:b5jitter}) non evidenziano un recupero rilevante della stabilità.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b5_isolation_co_location/Tail_latencies.png}
+\caption{B5: latenze di coda con isolamento in co-locazione.}\label{fig:b5tail}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.97\columnwidth]{plots/markdown/b5_isolation_co_location/jitter_infer_ms.png}
+\caption{B5: jitter e variabilità con isolamento in co-locazione.}\label{fig:b5jitter}
+\end{figure}
+
+\FloatBarrier
+\subsection{Interpretazione dei risultati}
+Il risultato è coerente con un limite delle strategie adottate: esse agiscono sull'esecuzione CPU e non assegnano quote o finestre esclusive di utilizzo della GPU. La contesa dell'acceleratore permane quindi anche quando i processi sono vincolati a core isolati.
+
+\FloatBarrier
+\section{Conclusioni}\label{sec:conclusions}
+
+Il confronto sperimentale evidenzia un compromesso tra rapidità, stabilità e accuratezza. SemIf, con tempo di inferenza a riposo pari a circa 238 ms, risulta più rapido e presenta una variabilità assoluta inferiore rispetto a Gemma. Tale vantaggio è particolarmente rilevante per applicazioni embedded nelle quali l'output consiste nella selezione di un'azione tra alternative note. Le condizioni più sfavorevoli mostrano tuttavia un degrado significativo anche per SemIf, con latenze di coda fino a circa 1,4 s nei test di interferenza.
+La selezione in un insieme finito semplifica il contratto di uscita, ma non esclude decisioni errate. Anche Gemma è invocato mediante uno schema JSON vincolato; la correttezza semantica e il rispetto delle scadenze devono dunque essere valutati separatamente dal formato della risposta. L'accuratezza inferiore osservata in alcuni casi per SemIf richiede ulteriori verifiche prima di un impiego nel controllo di sistemi reali.
+Per Gemma, la generazione autoregressiva introduce una componente temporale aggiuntiva, sensibile alle risorse condivise. Il throughput complessivo a riposo è pari a circa 3,35 token/s. Il confronto non consente di separare gli effetti dell'architettura decisionale da quelli della dimensione dei modelli, della quantizzazione e dei backend.
+Il pinning sui core isolati attenua le interferenze dei carichi CPU e risulta più efficace del solo incremento di priorità. In co-locazione, invece, l'isolamento della CPU non risolve la contesa della GPU. Il controllo dell'accesso all'acceleratore costituisce quindi una direzione di approfondimento per ottenere una maggiore prevedibilità.
+Ulteriori sviluppi comprendono la specializzazione del modello decisionale mediante fine-tuning, il confronto con modelli generativi di dimensione comparabile e la misura dei messaggi scartati. Per valutare requisiti hard real-time occorrono inoltre scadenze esplicite, una caratterizzazione riproducibile del jitter e un'analisi del caso peggiore. La caratterizzazione della latenza di scheduling mediante \code{cyclictest} costituisce un ulteriore sviluppo della valutazione temporale. Le osservazioni presentate descrivono le configurazioni sperimentate e non forniscono garanzie temporali universali.
+
+\FloatBarrier
+\balance
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
-\bibitem{b8} D. P. Kingma and M. Welling, ``Auto-encoding variational Bayes,'' 2013, arXiv:1312.6114. [Online]. Available: https://arxiv.org/abs/1312.6114
-\bibitem{b9} S. Liu, ``Wi-Fi Energy Detection Testbed (12MTC),'' 2023, gitHub repository. [Online]. Available: https://github.com/liustone99/Wi-Fi-Energy-Detection-Testbed-12MTC
-\bibitem{b10} ``Treatment episode data set: discharges (TEDS-D): concatenated, 2006 to 2009.'' U.S. Department of Health and Human Services, Substance Abuse and Mental Health Services Administration, Office of Applied Studies, August, 2013, DOI:10.3886/ICPSR30122.v2
-\bibitem{b11} K. Eves and J. Valasek, ``Adaptive control for singularly perturbed systems examples,'' Code Ocean, Aug. 2023. [Online]. Available: https://codeocean.com/capsule/4989235/tree
+\bibitem{typesafe} D. Almeida, ``Introducing System One Models \& Jev,'' TypeSafe AI, 15 settembre 2026. [Online]. Disponibile: \url{https://typesafe.ai/blog/introducing-system-one-models-and-jev}. Consultato il 15 ottobre 2026.
+\bibitem{openjev} TheoLeeCJ e collaboratori, ``SemIf (formerly OpenJev),'' repository GitHub. [Online]. Disponibile: \url{https://github.com/TheoLeeCJ/SemIf-OpenJev}. Consultato il 15 ottobre 2026.
+\bibitem{gemma-core} Google, ``Panoramica del modello Gemma 4,'' Google AI for Developers. [Online]. Disponibile: \url{https://ai.google.dev/gemma/docs/core?hl=it}. Consultato il 15 ottobre 2026.
+\bibitem{gemma-card} Google DeepMind, ``Gemma 4 model card,'' Google AI for Developers. [Online]. Disponibile: \url{https://ai.google.dev/gemma/docs/core/model_card_4}. Consultato il 15 ottobre 2026.
+\bibitem{openjev-method} TheoLeeCJ e collaboratori, ``Method,'' SemIf-OpenJev. [Online]. Disponibile: \url{https://github.com/TheoLeeCJ/SemIf-OpenJev/blob/master/docs/METHOD.md}. Consultato il 15 ottobre 2026.
 \end{thebibliography}
-
-\vspace{12pt}
-\color{red}
-IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
-
 \end{document}

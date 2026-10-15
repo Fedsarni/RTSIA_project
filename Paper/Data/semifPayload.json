@@ -1,0 +1,25 @@
+{
+  "row": {
+    "id": "data_sequence_number",
+    "state": {
+      "obstacle_distance_m": "random",
+      "motor_temperature_c": "random",
+      "speed_m_s": "random"
+    },
+    "question": "Which action should the robot take right now?",
+    "options": [
+      {
+        "id": "proceed",
+        "description": "Keep moving at the current speed: the obstacle is at least 1.5 m away and the motor temperature is at most 75 degrees C."
+      },
+      {
+        "id": "slow_down",
+        "description": "Reduce speed: no stop condition holds, and the obstacle is closer than 1.5 m or the motor temperature is above 75 degrees C."
+      },
+      {
+        "id": "stop",
+        "description": "Stop immediately: the obstacle is closer than 0.5 m, or the motor temperature is above 90 degrees C."
+      }
+    ]
+  }
+}

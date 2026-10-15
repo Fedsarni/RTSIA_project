@@ -1,0 +1,15 @@
+{
+  "system": "gemma or semif",
+  "seq": "sequence number from the ROS message",
+  "t_gen_ns": "request generation time",
+  "t_in_ns": "request start time",
+  "t_out_ns": "response reception time",
+  "action": "action received as response",
+  "expected": "expected action",
+  "n_prompt_tokens": "prompt token number",
+  "prefill_ms": "prefill phase time",
+  "decode_ms": "decode phase time",
+  "n_output_tokens": 0,
+  "prompt_cache": "serial for semif, true for gemma",
+  "dropped": "dropped message count"
+}

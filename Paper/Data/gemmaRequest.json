@@ -1,0 +1,44 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are the decision module of a mobile robot. Reply only with the requested JSON."
+    },
+    {
+      "role": "user",
+      "content": {
+        "question": "question field from the ROS message",
+        "options": [
+          "proceed",
+          "slow_down",
+          "stop"
+        ],
+        "sensor_state": "state field from the ROS message"
+      }
+    }
+  ],
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "schema": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "proceed",
+              "slow_down",
+              "stop"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "max_tokens": 32,
+  "temperature": 0,
+  "cache_prompt": true
+}
