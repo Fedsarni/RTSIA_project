@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1792084825.25887 "paper.tex" "paper.pdf" "paper" 1792084832.00195 0
+["pdflatex"] 1792322934.79982 "paper.tex" "paper.pdf" "paper" 1792322941.58777 0
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1775415801 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1775415801 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -123,9 +123,9 @@
   "Data/gemmaRequest.json" 1792076515.49658 892 7b576132b7636548938f87f6e46b8363 ""
   "Data/semifPayload.json" 1792076515.49655 815 fe4a6a81c9deb0250deb35783de79c30 ""
   "Data/sensorsMsg.json" 1792076007.15844 843 e0132b67020aae9c55aa022fb81df5c5 ""
-  "paper.aux" 1792084831.95131 16071 e798051be7132a790a2bbcea542e5034 "pdflatex"
-  "paper.out" 1792084831.95231 6169 416be526b58e5f9982f1f8e979c89e1c "pdflatex"
-  "paper.tex" 1792084795.33833 36210 26f9e98139b29a8149d17c565deb4bf0 ""
+  "paper.aux" 1792322941.53665 16177 6e5e44eb95c21c80cddde8dcb7ebe794 "pdflatex"
+  "paper.out" 1792322941.53765 6169 416be526b58e5f9982f1f8e979c89e1c "pdflatex"
+  "paper.tex" 1792322927.96466 37206 e8ba5d94a9aa16c90b987ff57b25a8eb ""
   "plots/markdown/0_infrastruttura/rtsia.drawio.png" 1792065866 242575 ba8c0d178ab18f1ebe3e2371555613ce ""
   "plots/markdown/b1_baseline/Prefill_decode.png" 1792065866 66066 3293b809b7e613c7586d422ec409cf63 ""
   "plots/markdown/b1_baseline/accuracy.png" 1792065866 72196 112b53e2d4a5fc402d98a16702ccdc4d ""

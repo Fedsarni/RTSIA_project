@@ -53,7 +53,7 @@ Nessuno nei sette Markdown presenti al termine della redazione.
 - Esempi JSON ripuliti dalle concatenazioni di stringhe e dalle virgole mancanti presenti nel Markdown, senza cambiare le strutture descritte.
 - Nessun dato sperimentale aggiunto per immagini mancanti, cyclictest o log CSV non disponibili.
 - Distinte le ipotesi causali dai risultati osservati; non affermate garanzie hard real-time.
-- Omesse la stima teorica non ricostruibile di 11 token/s e le prestazioni dichiarate di modelli esterni non testati.
+- Omessa la stima teorica non ricostruibile di 11 token/s. Le prestazioni di modelli esterni non testati sono distinte dai risultati sperimentali del paper.
 
 ## Compilazione
 
@@ -79,3 +79,10 @@ Sommario riorganizzato attorno a problema, limiti, approccio proposto e metodolo
 - Figure distribuite nelle sottosezioni pertinenti; impedita la comparsa prima del richiamo testuale e limitato lo spostamento oltre la discussione associata.
 - Piani sperimentali impaginati su singola colonna per evitare pagine quasi vuote causate dalle tabelle a doppia colonna.
 - Conservate tutte le 26 immagini e le 9 tabelle; verificata anche l’impaginazione mediante anteprime del PDF.
+
+## Aggiornamento delle conclusioni (18 ottobre 2026)
+
+- SemIf contestualizzato come prima implementazione aperta dell'approccio System One; introdotta la denominazione decision models usata nei progetti Laya e Ollaya.
+- Verificato nel README ufficiale di Laya il dato dichiarato di 33 ms per una domanda su NVIDIA T4: https://github.com/NandhaKishorM/laya. Distinto dalla misura di circa 238 ms del paper su Jetson; nessuna superiorità di accuratezza dedotta.
+- Aggiunto Ollaya come motore di esecuzione locale con interfaccia compatibile TypeSafe: https://github.com/ollaya-dev/ollaya.
+- Inseriti entrambi i repository in bibliografia e proposta una valutazione futura a parità di piattaforma e carichi.

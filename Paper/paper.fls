@@ -1,4 +1,4 @@
-PWD /home/fr3nk/Documents/REPORT_ELABORATO/Privata e condivisa/Risultati analisi/Paper
+PWD /home/fr3nk/Documents/RTSIA_project/Paper
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT paper.tex
@@ -327,13 +327,13 @@ INPUT ./plots/markdown/b1_baseline/Prefill_decode.png
 INPUT ./plots/markdown/b1_baseline/Prefill_decode.png
 INPUT ./plots/markdown/b1_baseline/Prefill_decode.png
 INPUT ./plots/markdown/b1_baseline/Prefill_decode.png
+INPUT ./plots/markdown/b1_baseline/accuracy.png
+INPUT ./plots/markdown/b1_baseline/accuracy.png
+INPUT ./plots/markdown/b1_baseline/accuracy.png
+INPUT ./plots/markdown/b1_baseline/accuracy.png
+INPUT ./plots/markdown/b1_baseline/accuracy.png
 INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT ./plots/markdown/b1_baseline/accuracy.png
-INPUT ./plots/markdown/b1_baseline/accuracy.png
-INPUT ./plots/markdown/b1_baseline/accuracy.png
-INPUT ./plots/markdown/b1_baseline/accuracy.png
-INPUT ./plots/markdown/b1_baseline/accuracy.png
 INPUT ./plots/markdown/b2_co_location/bp_latenzaE2E.png
 INPUT ./plots/markdown/b2_co_location/bp_latenzaE2E.png
 INPUT ./plots/markdown/b2_co_location/bp_latenzaE2E.png

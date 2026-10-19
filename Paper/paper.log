@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.11)  15 OCT 2026 19:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.10.11)  18 OCT 2026 13:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -512,24 +512,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 -- Lines per column: 56 (exact).
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -555,57 +555,55 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@lstlisting=\count336
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 20.
  (./paper.out)
 (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
 
-Underfull \hbox (badness 4291) in paragraph at lines 29--31
-[]\T1/ptm/b/it/9 Sommario\T1/ptm/b/n/9 ---L'impiego di modelli linguistici nei 
-sistemi
+Underfull \hbox (badness 2409) in paragraph at lines 28--30
+\T1/ptm/b/n/9 e non richiede necessariamente l'impiego di un modello
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--34
-[]\T1/ptm/b/it/9 Parole chiave\T1/ptm/b/n/9 ---modelli linguistici, sistemi emb
-edded,
+Underfull \hbox (badness 1502) in paragraph at lines 28--30
+\T1/ptm/b/n/9 e valutarne i costi in termini di latenza e prevedibilità.
  []
 
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 44
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 41
 .
 (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 1946) in paragraph at lines 42--46
+Underfull \hbox (badness 1946) in paragraph at lines 39--43
 []\T1/ptm/m/n/10 L'obiettivo è confrontare due approcci all'impiego di
  []
 
 
-Underfull \hbox (badness 3690) in paragraph at lines 42--46
+Underfull \hbox (badness 3690) in paragraph at lines 39--43
 \T1/ptm/m/n/10 modelli linguistici in termini di responsività, stabilità,
  []
 
 
-Underfull \hbox (badness 1490) in paragraph at lines 42--46
+Underfull \hbox (badness 1490) in paragraph at lines 39--43
 \T1/ptm/m/n/10 denominazione richiama la distinzione di Kahneman tra
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 48--51
+Underfull \hbox (badness 1616) in paragraph at lines 45--48
 []\T1/ptm/m/n/10 La Tabella []I[] riassume le configurazioni. Gemma 4
  []
 
@@ -619,44 +617,44 @@ ts/enc/dvips/base/8r.enc}
 File: plots/markdown/0_infrastruttura/rtsia.drawio.png Graphic file (type png)
 <use plots/markdown/0_infrastruttura/rtsia.drawio.png>
 Package pdftex.def Info: plots/markdown/0_infrastruttura/rtsia.drawio.png  used
- on input line 102.
+ on input line 99.
 (pdftex.def)             Requested size: 244.4403pt x 159.62917pt.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 109.
+nput line 106.
  (./Data/sensorsMsg.json) (./Data/semifPayload.json
 [2 <./plots/markdown/0_infrastruttura/rtsia.drawio.png>])
 (./Data/gemmaRequest.json) (./Data/decisionMsg.json)
-Underfull \hbox (badness 10000) in paragraph at lines 120--122
+Underfull \hbox (badness 10000) in paragraph at lines 117--119
 \T1/ptm/m/n/10 Per distinguere l'attesa precedente all'invocazione
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--127
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
 \T1/ptm/m/n/10 Quest'ultimo può includere costi di invocazione e
  []
 
 
-Underfull \hbox (badness 1975) in paragraph at lines 124--127
+Underfull \hbox (badness 1975) in paragraph at lines 121--124
 \T1/ptm/m/n/10 comunicazione; non rappresenta necessariamente il solo
  []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 124--127
+Underfull \hbox (badness 1824) in paragraph at lines 121--124
 \T1/ptm/m/n/10 prodotta con quella attesa. Sono inoltre analizzate la
  []
 
 
-Underfull \hbox (badness 7379) in paragraph at lines 124--127
+Underfull \hbox (badness 7379) in paragraph at lines 121--124
 \T1/ptm/m/n/10 stressore, livello configurato, modalità di isolamento,
  []
 
 
-Underfull \hbox (badness 2213) in paragraph at lines 124--127
+Underfull \hbox (badness 2213) in paragraph at lines 121--124
 \T1/ptm/m/n/10 ripetizioni, durata della singola esecuzione e frequenza
  []
 
 [3]
-Underfull \hbox (badness 1852) in paragraph at lines 170--171
+Underfull \hbox (badness 1852) in paragraph at lines 167--168
 \T1/ptm/m/n/10 presenta una dispersione assoluta contenuta attorno alla
  []
 
@@ -666,168 +664,168 @@ File: plots/markdown/b1_baseline/boxplot_latenza_e2e_singoli.png Graphic file (
 type png)
 <use plots/markdown/b1_baseline/boxplot_latenza_e2e_singoli.png>
 Package pdftex.def Info: plots/markdown/b1_baseline/boxplot_latenza_e2e_singoli
-.png  used on input line 174.
+.png  used on input line 171.
 (pdftex.def)             Requested size: 244.4403pt x 127.51947pt.
 <plots/markdown/b1_baseline/tail_latencies.png, id=303, 1083.3273pt x 794.2473p
 t>
 File: plots/markdown/b1_baseline/tail_latencies.png Graphic file (type png)
 <use plots/markdown/b1_baseline/tail_latencies.png>
 Package pdftex.def Info: plots/markdown/b1_baseline/tail_latencies.png  used on
- input line 180.
+ input line 177.
 (pdftex.def)             Requested size: 244.4403pt x 179.20694pt.
 <plots/markdown/b1_baseline/Prefill_decode.png, id=305, 1011.0573pt x 794.2473p
 t>
 File: plots/markdown/b1_baseline/Prefill_decode.png Graphic file (type png)
 <use plots/markdown/b1_baseline/Prefill_decode.png>
 Package pdftex.def Info: plots/markdown/b1_baseline/Prefill_decode.png  used on
- input line 190.
+ input line 187.
 (pdftex.def)             Requested size: 244.4403pt x 192.01695pt.
-[4 <./plots/markdown/b1_baseline/boxplot_latenza_e2e_singoli.png> <./plots/mark
-down/b1_baseline/tail_latencies.png>]
-<plots/markdown/b1_baseline/accuracy.png, id=317, 1011.0573pt x 721.9773pt>
+<plots/markdown/b1_baseline/accuracy.png, id=307, 1011.0573pt x 721.9773pt>
 File: plots/markdown/b1_baseline/accuracy.png Graphic file (type png)
 <use plots/markdown/b1_baseline/accuracy.png>
 Package pdftex.def Info: plots/markdown/b1_baseline/accuracy.png  used on input
- line 200.
+ line 197.
 (pdftex.def)             Requested size: 244.4403pt x 174.54498pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+[4 <./plots/markdown/b1_baseline/boxplot_latenza_e2e_singoli.png> <./plots/mark
+down/b1_baseline/tail_latencies.png> <./plots/markdown/b1_baseline/Prefill_deco
+de.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 []\T1/ptm/m/n/10 B2 valuta l'interferenza reciproca quando i due
  []
 
-<plots/markdown/b2_co_location/bp_latenzaE2E.png, id=322, 1011.0573pt x 721.977
+<plots/markdown/b2_co_location/bp_latenzaE2E.png, id=324, 1011.0573pt x 721.977
 3pt>
 File: plots/markdown/b2_co_location/bp_latenzaE2E.png Graphic file (type png)
 <use plots/markdown/b2_co_location/bp_latenzaE2E.png>
 Package pdftex.def Info: plots/markdown/b2_co_location/bp_latenzaE2E.png  used 
-on input line 232.
+on input line 229.
 (pdftex.def)             Requested size: 244.4403pt x 174.54498pt.
-<plots/markdown/b2_co_location/boxplot_latenza_e2e_singoli.png, id=323, 1849.38
+<plots/markdown/b2_co_location/boxplot_latenza_e2e_singoli.png, id=325, 1849.38
 93pt x 964.8045pt>
 File: plots/markdown/b2_co_location/boxplot_latenza_e2e_singoli.png Graphic fil
 e (type png)
 <use plots/markdown/b2_co_location/boxplot_latenza_e2e_singoli.png>
 Package pdftex.def Info: plots/markdown/b2_co_location/boxplot_latenza_e2e_sing
-oli.png  used on input line 238.
+oli.png  used on input line 235.
 (pdftex.def)             Requested size: 244.4403pt x 127.51947pt.
-<plots/markdown/b2_co_location/boxplot_infer_ms.png, id=324, 1011.78pt x 722.7p
+<plots/markdown/b2_co_location/boxplot_infer_ms.png, id=326, 1011.78pt x 722.7p
 t>
 File: plots/markdown/b2_co_location/boxplot_infer_ms.png Graphic file (type png
 )
 <use plots/markdown/b2_co_location/boxplot_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b2_co_location/boxplot_infer_ms.png  us
-ed on input line 244.
+ed on input line 241.
 (pdftex.def)             Requested size: 244.4403pt x 174.5984pt.
-[5 <./plots/markdown/b1_baseline/Prefill_decode.png> <./plots/markdown/b1_basel
-ine/accuracy.png> <./plots/markdown/b2_co_location/bp_latenzaE2E.png> <./plots/
-markdown/b2_co_location/boxplot_latenza_e2e_singoli.png>]
-<plots/markdown/b2_co_location/jitter_infer_ms.png, id=339, 1011.78pt x 794.97p
+[5 <./plots/markdown/b1_baseline/accuracy.png> <./plots/markdown/b2_co_location
+/bp_latenzaE2E.png> <./plots/markdown/b2_co_location/boxplot_latenza_e2e_singol
+i.png> <./plots/markdown/b2_co_location/boxplot_infer_ms.png>]
+<plots/markdown/b2_co_location/jitter_infer_ms.png, id=340, 1011.78pt x 794.97p
 t>
 File: plots/markdown/b2_co_location/jitter_infer_ms.png Graphic file (type png)
 
 <use plots/markdown/b2_co_location/jitter_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b2_co_location/jitter_infer_ms.png  use
-d on input line 254.
+d on input line 251.
 (pdftex.def)             Requested size: 244.4403pt x 192.05824pt.
-<plots/markdown/b2_co_location/Prefill_decode.png, id=342, 1011.0573pt x 794.24
+<plots/markdown/b2_co_location/Prefill_decode.png, id=343, 1011.0573pt x 794.24
 73pt>
 File: plots/markdown/b2_co_location/Prefill_decode.png Graphic file (type png)
 <use plots/markdown/b2_co_location/Prefill_decode.png>
 Package pdftex.def Info: plots/markdown/b2_co_location/Prefill_decode.png  used
- on input line 264.
+ on input line 261.
 (pdftex.def)             Requested size: 244.4403pt x 192.01695pt.
-<plots/markdown/b2_co_location/decodePrefill.png, id=343, 1011.0573pt x 794.247
+<plots/markdown/b2_co_location/decodePrefill.png, id=344, 1011.0573pt x 794.247
 3pt>
 File: plots/markdown/b2_co_location/decodePrefill.png Graphic file (type png)
 <use plots/markdown/b2_co_location/decodePrefill.png>
 Package pdftex.def Info: plots/markdown/b2_co_location/decodePrefill.png  used 
-on input line 270.
+on input line 267.
 (pdftex.def)             Requested size: 244.4403pt x 192.01695pt.
- [6 <./plots/markdown/b2_co_location/boxplot_infer_ms.png> <./plots/markdown/b2
-_co_location/jitter_infer_ms.png> <./plots/markdown/b2_co_location/Prefill_deco
-de.png> <./plots/markdown/b2_co_location/decodePrefill.png>]
-Underfull \hbox (badness 3019) in paragraph at lines 312--313
+
+Underfull \hbox (badness 3019) in paragraph at lines 309--310
 []\T1/ptm/m/n/10 I carichi più penalizzanti risultano \T1/pcr/m/n/10 sched_swit
 ch\T1/ptm/m/n/10 ,
  []
 
-<plots/markdown/b3_interference/boxplot_infer_ms.png, id=359, 1011.78pt x 722.7
+<plots/markdown/b3_interference/boxplot_infer_ms.png, id=348, 1011.78pt x 722.7
 pt>
 File: plots/markdown/b3_interference/boxplot_infer_ms.png Graphic file (type pn
 g)
 <use plots/markdown/b3_interference/boxplot_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b3_interference/boxplot_infer_ms.png  u
-sed on input line 316.
+sed on input line 313.
 (pdftex.def)             Requested size: 244.4403pt x 174.5984pt.
-<plots/markdown/b3_interference/boxplots_e2e.png, id=360, 1011.0573pt x 721.977
+<plots/markdown/b3_interference/boxplots_e2e.png, id=349, 1011.0573pt x 721.977
 3pt>
 File: plots/markdown/b3_interference/boxplots_e2e.png Graphic file (type png)
 <use plots/markdown/b3_interference/boxplots_e2e.png>
 Package pdftex.def Info: plots/markdown/b3_interference/boxplots_e2e.png  used 
-on input line 322.
+on input line 319.
 (pdftex.def)             Requested size: 244.4403pt x 174.54498pt.
-
-Underfull \hbox (badness 2556) in paragraph at lines 328--329
+[6 <./plots/markdown/b2_co_location/jitter_infer_ms.png> <./plots/markdown/b2_c
+o_location/Prefill_decode.png> <./plots/markdown/b2_co_location/decodePrefill.p
+ng>]
+Underfull \hbox (badness 2556) in paragraph at lines 325--326
 \T1/ptm/m/n/10 anche casi superiori a 12 s. Tali massimi osservati
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 328--329
+Underfull \hbox (badness 1484) in paragraph at lines 325--326
 \T1/ptm/m/n/10 Un coefficiente di variazione inferiore per Gemma non
  []
 
-<plots/markdown/b3_interference/tail_latencies.png, id=363, 1083.3273pt x 794.2
+<plots/markdown/b3_interference/tail_latencies.png, id=365, 1083.3273pt x 794.2
 473pt>
 File: plots/markdown/b3_interference/tail_latencies.png Graphic file (type png)
 
 <use plots/markdown/b3_interference/tail_latencies.png>
 Package pdftex.def Info: plots/markdown/b3_interference/tail_latencies.png  use
-d on input line 332.
+d on input line 329.
 (pdftex.def)             Requested size: 244.4403pt x 179.20694pt.
-<plots/markdown/b3_interference/jitter_infer_ms.png, id=364, 1011.78pt x 794.97
+<plots/markdown/b3_interference/jitter_infer_ms.png, id=366, 1011.78pt x 794.97
 pt>
 File: plots/markdown/b3_interference/jitter_infer_ms.png Graphic file (type png
 )
 <use plots/markdown/b3_interference/jitter_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b3_interference/jitter_infer_ms.png  us
-ed on input line 338.
+ed on input line 335.
 (pdftex.def)             Requested size: 244.4403pt x 192.05824pt.
-[7 <./plots/markdown/b3_interference/boxplot_infer_ms.png> <./plots/markdown/b3
-_interference/boxplots_e2e.png> <./plots/markdown/b3_interference/tail_latencie
-s.png>]
-Underfull \hbox (badness 2134) in paragraph at lines 344--346
+
+Underfull \hbox (badness 2134) in paragraph at lines 341--343
 \T1/ptm/m/n/10 interferenze nell'orchestrazione CPU dell'inferenza. La
  []
 
-<plots/markdown/b3_interference/prefill_decode.png, id=381, 1011.0573pt x 794.2
+<plots/markdown/b3_interference/prefill_decode.png, id=371, 1011.0573pt x 794.2
 473pt>
 File: plots/markdown/b3_interference/prefill_decode.png Graphic file (type png)
 
 <use plots/markdown/b3_interference/prefill_decode.png>
 Package pdftex.def Info: plots/markdown/b3_interference/prefill_decode.png  use
-d on input line 349.
+d on input line 346.
 (pdftex.def)             Requested size: 244.4403pt x 192.01695pt.
-<plots/markdown/b3_interference/chart_memstream_model_semif.png, id=382, 1084.0
+<plots/markdown/b3_interference/chart_memstream_model_semif.png, id=372, 1084.0
 5pt x 650.43pt>
 File: plots/markdown/b3_interference/chart_memstream_model_semif.png Graphic fi
 le (type png)
 <use plots/markdown/b3_interference/chart_memstream_model_semif.png>
 Package pdftex.def Info: plots/markdown/b3_interference/chart_memstream_model_s
-emif.png  used on input line 355.
+emif.png  used on input line 352.
 (pdftex.def)             Requested size: 244.4403pt x 146.65802pt.
-<plots/markdown/b3_interference/chart_memstream_model_gemma.png, id=383, 1084.0
+<plots/markdown/b3_interference/chart_memstream_model_gemma.png, id=373, 1084.0
 5pt x 650.43pt>
 File: plots/markdown/b3_interference/chart_memstream_model_gemma.png Graphic fi
 le (type png)
 <use plots/markdown/b3_interference/chart_memstream_model_gemma.png>
 Package pdftex.def Info: plots/markdown/b3_interference/chart_memstream_model_g
-emma.png  used on input line 361.
+emma.png  used on input line 358.
 (pdftex.def)             Requested size: 244.4403pt x 146.65802pt.
-[8 <./plots/markdown/b3_interference/jitter_infer_ms.png> <./plots/markdown/b3_
-interference/prefill_decode.png> <./plots/markdown/b3_interference/chart_memstr
-eam_model_semif.png> <./plots/markdown/b3_interference/chart_memstream_model_ge
-mma.png>]
-Underfull \hbox (badness 2884) in paragraph at lines 389--392
+[7 <./plots/markdown/b3_interference/boxplot_infer_ms.png> <./plots/markdown/b3
+_interference/boxplots_e2e.png> <./plots/markdown/b3_interference/tail_latencie
+s.png> <./plots/markdown/b3_interference/jitter_infer_ms.png>] [8 <./plots/mark
+down/b3_interference/prefill_decode.png> <./plots/markdown/b3_interference/char
+t_memstream_model_semif.png> <./plots/markdown/b3_interference/chart_memstream_
+model_gemma.png>]
+Underfull \hbox (badness 2884) in paragraph at lines 386--389
 []\T1/ptm/m/n/10 B4 valuta tecniche di isolamento rispetto ai carichi
  []
 
@@ -836,43 +834,45 @@ t>
 File: plots/markdown/b4_isolation/Box_plots_e2e.png Graphic file (type png)
 <use plots/markdown/b4_isolation/Box_plots_e2e.png>
 Package pdftex.def Info: plots/markdown/b4_isolation/Box_plots_e2e.png  used on
- input line 430.
+ input line 427.
 (pdftex.def)             Requested size: 244.4403pt x 174.54498pt.
 <plots/markdown/b4_isolation/boxplot_infer_ms.png, id=400, 1011.78pt x 722.7pt>
 
 File: plots/markdown/b4_isolation/boxplot_infer_ms.png Graphic file (type png)
 <use plots/markdown/b4_isolation/boxplot_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b4_isolation/boxplot_infer_ms.png  used
- on input line 436.
+ on input line 433.
 (pdftex.def)             Requested size: 244.4403pt x 174.5984pt.
 <plots/markdown/b4_isolation/tail_latencies.png, id=403, 1083.3273pt x 794.2473
 pt>
 File: plots/markdown/b4_isolation/tail_latencies.png Graphic file (type png)
 <use plots/markdown/b4_isolation/tail_latencies.png>
 Package pdftex.def Info: plots/markdown/b4_isolation/tail_latencies.png  used o
-n input line 446.
+n input line 443.
 (pdftex.def)             Requested size: 244.4403pt x 179.20694pt.
 <plots/markdown/b4_isolation/jitter_infer_ms.png, id=404, 1011.78pt x 794.97pt>
 
 File: plots/markdown/b4_isolation/jitter_infer_ms.png Graphic file (type png)
 <use plots/markdown/b4_isolation/jitter_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b4_isolation/jitter_infer_ms.png  used 
-on input line 452.
+on input line 449.
 (pdftex.def)             Requested size: 244.4403pt x 192.05824pt.
-[9 <./plots/markdown/b4_isolation/Box_plots_e2e.png> <./plots/markdown/b4_isola
-tion/boxplot_infer_ms.png>]
-Underfull \hbox (badness 2088) in paragraph at lines 466--467
+[9
+
+ <./plots/markdown/b4_isolation/Box_plots_e2e.png> <./plots/markdown/b4_isolati
+on/boxplot_infer_ms.png>]
+Underfull \hbox (badness 2088) in paragraph at lines 463--464
 []\T1/ptm/m/n/10 B5 verifica se le tecniche di isolamento della CPU
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 466--467
+Underfull \hbox (badness 1721) in paragraph at lines 463--464
 \T1/ptm/m/n/10 identificata dai suffissi \T1/pcr/m/n/10 @semif \T1/ptm/m/n/10 e
  \T1/pcr/m/n/10 @gemma\T1/ptm/m/n/10 . Il piano
  []
 
 
-Underfull \hbox (badness 2726) in paragraph at lines 493--494
+Underfull \hbox (badness 2726) in paragraph at lines 490--491
 []\T1/ptm/m/n/10 Le distribuzioni delle Figg. []23[] e []24[] non mostrano
  []
 
@@ -882,7 +882,7 @@ File: plots/markdown/b5_isolation_co_location/boxplot_infer_ms.png Graphic file
  (type png)
 <use plots/markdown/b5_isolation_co_location/boxplot_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b5_isolation_co_location/boxplot_infer_
-ms.png  used on input line 498.
+ms.png  used on input line 495.
 (pdftex.def)             Requested size: 244.4403pt x 174.5984pt.
 <plots/markdown/b5_isolation_co_location/Boxplots_e2e.png, id=420, 1011.0573pt 
 x 721.9773pt>
@@ -890,7 +890,7 @@ File: plots/markdown/b5_isolation_co_location/Boxplots_e2e.png Graphic file (ty
 pe png)
 <use plots/markdown/b5_isolation_co_location/Boxplots_e2e.png>
 Package pdftex.def Info: plots/markdown/b5_isolation_co_location/Boxplots_e2e.p
-ng  used on input line 504.
+ng  used on input line 501.
 (pdftex.def)             Requested size: 244.4403pt x 174.54498pt.
 [10 <./plots/markdown/b4_isolation/tail_latencies.png> <./plots/markdown/b4_iso
 lation/jitter_infer_ms.png> <./plots/markdown/b5_isolation_co_location/boxplot_
@@ -901,7 +901,7 @@ File: plots/markdown/b5_isolation_co_location/Tail_latencies.png Graphic file (
 type png)
 <use plots/markdown/b5_isolation_co_location/Tail_latencies.png>
 Package pdftex.def Info: plots/markdown/b5_isolation_co_location/Tail_latencies
-.png  used on input line 514.
+.png  used on input line 511.
 (pdftex.def)             Requested size: 244.4403pt x 179.20694pt.
 <plots/markdown/b5_isolation_co_location/jitter_infer_ms.png, id=435, 1011.78pt
  x 794.97pt>
@@ -909,26 +909,31 @@ File: plots/markdown/b5_isolation_co_location/jitter_infer_ms.png Graphic file
 (type png)
 <use plots/markdown/b5_isolation_co_location/jitter_infer_ms.png>
 Package pdftex.def Info: plots/markdown/b5_isolation_co_location/jitter_infer_m
-s.png  used on input line 520.
+s.png  used on input line 517.
 (pdftex.def)             Requested size: 244.4403pt x 192.05824pt.
 
-Underfull \hbox (badness 2080) in paragraph at lines 526--527
+Underfull \hbox (badness 2080) in paragraph at lines 523--524
 \T1/ptm/m/n/10 o finestre esclusive di utilizzo della GPU. La contesa
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 531--536
+Underfull \hbox (badness 2150) in paragraph at lines 528--532
 \T1/ptm/m/n/10 quali l'output consiste nella selezione di un'azione tra
  []
 
 
-Underfull \hbox (badness 1715) in paragraph at lines 531--536
+Underfull \hbox (badness 1715) in paragraph at lines 528--532
 \T1/ptm/m/n/10 verifiche prima di un impiego nel controllo di sistemi
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 531--536
-\T1/ptm/m/n/10 hard real-time occorrono inoltre scadenze esplicite, una
+Underfull \hbox (badness 1546) in paragraph at lines 533--534
+\T1/ptm/m/n/10 basato su encoder, che restituisce decisioni tipizzate in
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 533--534
+\T1/ptm/m/n/10 di riduzione dei tempi di inferenza rispetto alla prima
  []
 
 [11 <./plots/markdown/b5_isolation_co_location/Boxplots_e2e.png> <./plots/markd
@@ -963,6 +968,12 @@ enJev / blob /
  []
 
 
+Underfull \hbox (badness 2310) in paragraph at lines 546--547
+\T1/ptm/m/n/8 Disponibile: []$https : / / github . com / ollaya-[]dev / ollaya$
+[]. Consultato il 18
+ []
+
+
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
 
@@ -973,6 +984,10 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
+
+Overfull \vbox (1.87497pt too high) has occurred while \output is active []
+
+
 [12] (./paper.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -982,13 +997,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 416BE526B58E5F9982F1F8E979C89E1C;6169.
  ) 
 Here is how much of TeX's memory you used:
- 14833 strings out of 469515
- 234108 string characters out of 5470806
- 1304821 words of memory out of 5000000
+ 14835 strings out of 469515
+ 234074 string characters out of 5470806
+ 1099873 words of memory out of 5000000
  43090 multiletter control sequences out of 15000+600000
  740155 words of font info for 155 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,10n,79p,1578b,2023s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1166b,2019s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/
@@ -998,10 +1013,10 @@ are/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a
 .pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (12 pages, 5202448 bytes).
+Output written on paper.pdf (12 pages, 5202188 bytes).
 PDF statistics:
- 550 PDF objects out of 1000 (max. 8388607)
- 457 compressed objects within 5 object streams
- 196 named destinations out of 1000 (max. 500000)
+ 558 PDF objects out of 1000 (max. 8388607)
+ 465 compressed objects within 5 object streams
+ 198 named destinations out of 1000 (max. 500000)
  403 words of extra memory for PDF output out of 10000 (max. 10000000)
 

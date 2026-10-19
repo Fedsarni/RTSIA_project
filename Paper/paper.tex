@@ -16,7 +16,6 @@
 \lstset{basicstyle=\ttfamily\scriptsize,breaklines=true,columns=fullflexible,
  keepspaces=true,showstringspaces=false,frame=single,captionpos=b}
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
-\renewcommand{\IEEEkeywordsname}{Parole chiave}
 \renewcommand{\lstlistingname}{Listato}
 \begin{document}
 \raggedbottom
@@ -27,11 +26,9 @@
 \IEEEauthorblockA{fran.tafuri@studenti.unina.it}}
 \maketitle
 \begin{abstract}
-L'impiego di modelli linguistici nei sistemi embedded consente di interpretare lo stato dell'ambiente e supportare decisioni operative, ma richiede latenze contenute e tempi di risposta prevedibili. La generazione autoregressiva dei modelli tradizionali introduce costi di decodifica e sensibilità alla contesa delle risorse, che ne limitano l'impiego nelle applicazioni real-time. Il paradigma System One, proposto da TypeSafe per Jev, privilegia decisioni strutturate e probabilistiche rispetto alla produzione di testo libero. In questo lavoro si valuta SemIf-OpenJev, un'implementazione aperta e indipendente di tale interfaccia decisionale, basata su Qwen3.5 4B in BF16. In modalità diretta, il sistema esegue un singolo passaggio del modello e normalizza i logit dei token associati alle alternative ammesse, senza generare token di risposta. Il confronto con Gemma 4 31B quantizzato a 8 bit, impiegato come sistema generativo di tipo System Two, analizza l'efficacia di questa modalità decisionale e dell'isolamento della CPU. La metodologia utilizza NVIDIA Jetson AGX Orin e un'infrastruttura ROS 2 per simulare le decisioni di un robot mobile. Cinque blocchi sperimentali misurano latenza end-to-end, tempi di inferenza, variabilità e accuratezza in esecuzione individuale, co-locazione e presenza di interferenze, con e senza isolamento. SemIf presenta maggiore rapidità e minore variabilità assoluta, a fronte di un'accuratezza talvolta inferiore; il pinning sui core isolati attenua le interferenze CPU, mentre permane la contesa della GPU.
+Nei sistemi embedded, la scelta di un'azione tra alternative predefinite è un problema di classificazione e non richiede necessariamente l'impiego di un modello linguistico generativo (LLM). I cosiddetti System One Models, presentati come sistemi che associano a uno stato decisioni probabilistiche, svolgono funzionalmente il ruolo di classificatori: la selezione tra classi note non costituisce di per sé una novità metodologica. Lo scopo di questo lavoro è mostrare, attraverso un confronto sperimentale, che la generazione autoregressiva non è sempre necessaria per compiti decisionali strutturati e valutarne i costi in termini di latenza e prevedibilità. Si confrontano SemIf-OpenJev, un'implementazione aperta e indipendente dell'interfaccia decisionale proposta da TypeSafe per Jev, e Gemma 4 31B quantizzato a 8 bit, impiegato in modalità generativa. SemIf utilizza Qwen3.5 4B in BF16 come classificatore: esegue un singolo passaggio e normalizza i logit associati alle alternative ammesse, senza generare token di risposta. Su NVIDIA Jetson AGX Orin, un'infrastruttura ROS 2 simula le decisioni di un robot mobile.
 \end{abstract}
-\begin{IEEEkeywords}
-modelli linguistici, sistemi embedded, isolamento, latenza, ROS 2, inferenza su GPU
-\end{IEEEkeywords}
+
 
 
 \FloatBarrier
@@ -532,7 +529,10 @@ Il confronto sperimentale evidenzia un compromesso tra rapidità, stabilità e a
 La selezione in un insieme finito semplifica il contratto di uscita, ma non esclude decisioni errate. Anche Gemma è invocato mediante uno schema JSON vincolato; la correttezza semantica e il rispetto delle scadenze devono dunque essere valutati separatamente dal formato della risposta. L'accuratezza inferiore osservata in alcuni casi per SemIf richiede ulteriori verifiche prima di un impiego nel controllo di sistemi reali.
 Per Gemma, la generazione autoregressiva introduce una componente temporale aggiuntiva, sensibile alle risorse condivise. Il throughput complessivo a riposo è pari a circa 3,35 token/s. Il confronto non consente di separare gli effetti dell'architettura decisionale da quelli della dimensione dei modelli, della quantizzazione e dei backend.
 Il pinning sui core isolati attenua le interferenze dei carichi CPU e risulta più efficace del solo incremento di priorità. In co-locazione, invece, l'isolamento della CPU non risolve la contesa della GPU. Il controllo dell'accesso all'acceleratore costituisce quindi una direzione di approfondimento per ottenere una maggiore prevedibilità.
-Ulteriori sviluppi comprendono la specializzazione del modello decisionale mediante fine-tuning, il confronto con modelli generativi di dimensione comparabile e la misura dei messaggi scartati. Per valutare requisiti hard real-time occorrono inoltre scadenze esplicite, una caratterizzazione riproducibile del jitter e un'analisi del caso peggiore. La caratterizzazione della latenza di scheduling mediante \code{cyclictest} costituisce un ulteriore sviluppo della valutazione temporale. Le osservazioni presentate descrivono le configurazioni sperimentate e non forniscono garanzie temporali universali.
+
+La versione di SemIf impiegata in questo lavoro rappresenta soltanto una prima implementazione aperta dell'approccio System One e non esaurisce le possibilità del paradigma. L'ecosistema si sta sviluppando rapidamente e questi modelli sono oggi indicati anche con la denominazione \emph{decision models}, adottata da progetti quali Laya e Ollaya~\cite{laya,ollaya}. Laya propone un modello decisionale non autoregressivo basato su encoder, che restituisce decisioni tipizzate in un singolo passaggio. Il repository ufficiale riporta una latenza di 33 ms per una domanda su NVIDIA T4, quindi nell'ordine dei 30 ms~\cite{laya}. Il dato suggerisce un potenziale di riduzione dei tempi di inferenza rispetto alla prima implementazione qui valutata; hardware, carichi e protocolli differenti impediscono tuttavia un confronto diretto con i circa 238 ms misurati su Jetson AGX Orin e non consentono di dedurre un miglioramento dell'accuratezza. Parallelamente, Ollaya fornisce un motore per scaricare ed eseguire localmente decision models, incluso Laya, esponendoli tramite un servizio compatibile con l'interfaccia TypeSafe~\cite{ollaya}.
+
+Ulteriori sviluppi comprendono la valutazione di questi modelli e motori sulla medesima piattaforma e con gli stessi carichi sperimentali, la specializzazione del modello decisionale mediante fine-tuning, il confronto con modelli generativi di dimensione comparabile e la misura dei messaggi scartati. Per valutare requisiti hard real-time occorrono inoltre scadenze esplicite, una caratterizzazione riproducibile del jitter e un'analisi del caso peggiore. La caratterizzazione della latenza di scheduling mediante \code{cyclictest} costituisce un ulteriore sviluppo della valutazione temporale. Le osservazioni presentate descrivono le configurazioni sperimentate e non forniscono garanzie temporali universali.
 
 \FloatBarrier
 \balance
@@ -542,5 +542,7 @@ Ulteriori sviluppi comprendono la specializzazione del modello decisionale media
 \bibitem{gemma-core} Google, ``Panoramica del modello Gemma 4,'' Google AI for Developers. [Online]. Disponibile: \url{https://ai.google.dev/gemma/docs/core?hl=it}. Consultato il 15 ottobre 2026.
 \bibitem{gemma-card} Google DeepMind, ``Gemma 4 model card,'' Google AI for Developers. [Online]. Disponibile: \url{https://ai.google.dev/gemma/docs/core/model_card_4}. Consultato il 15 ottobre 2026.
 \bibitem{openjev-method} TheoLeeCJ e collaboratori, ``Method,'' SemIf-OpenJev. [Online]. Disponibile: \url{https://github.com/TheoLeeCJ/SemIf-OpenJev/blob/master/docs/METHOD.md}. Consultato il 15 ottobre 2026.
+\bibitem{laya} NandhaKishorM e collaboratori, ``Laya,'' repository GitHub. [Online]. Disponibile: \url{https://github.com/NandhaKishorM/laya}. Consultato il 18 ottobre 2026.
+\bibitem{ollaya} M. Cobanov e collaboratori, ``Ollaya,'' repository GitHub. [Online]. Disponibile: \url{https://github.com/ollaya-dev/ollaya}. Consultato il 18 ottobre 2026.
 \end{thebibliography}
 \end{document}
