@@ -17,9 +17,9 @@
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Caratteristiche dei modelli confrontati.}}{1}{table.1}\protected@file@percent }
 \newlabel{tab:models}{{I}{1}{Caratteristiche dei modelli confrontati}{table.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-C}}Hardware e software}{1}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-D}}Architettura ROS e flusso dei dati}{1}{subsection.1.4}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Piattaforma hardware e software utilizzata per i benchmark.}}{2}{table.2}\protected@file@percent }
 \newlabel{tab:platform}{{II}{2}{Piattaforma hardware e software utilizzata per i benchmark}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-D}}Architettura ROS e flusso dei dati}{2}{subsection.1.4}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Architettura ROS e collegamenti tra sensori simulati, modelli e logger.}}{2}{figure.1}\protected@file@percent }
 \newlabel{fig:ros}{{1}{2}{Architettura ROS e collegamenti tra sensori simulati, modelli e logger}{figure.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-E}}Formato dei messaggi e richieste}{2}{subsection.1.5}\protected@file@percent }
@@ -34,104 +34,87 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {I-F}}Metriche e piano di confronto}{3}{subsection.1.6}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Blocchi sperimentali e fattori variati.}}{3}{table.3}\protected@file@percent }
 \newlabel{tab:blocks}{{III}{3}{Blocchi sperimentali e fattori variati}{table.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}B1. Baseline}{4}{section.2}\protected@file@percent }
-\newlabel{sec:b1}{{II}{4}{B1. Baseline}{section.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Piano sperimentale}{4}{subsection.2.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Piano sperimentale B1: esecuzione individuale senza isolamento.}}{4}{table.4}\protected@file@percent }
-\newlabel{tab:b1}{{IV}{4}{Piano sperimentale B1: esecuzione individuale senza isolamento}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Latenza end-to-end e stabilità}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}B1. Baseline}{3}{section.2}\protected@file@percent }
+\newlabel{sec:b1}{{II}{3}{B1. Baseline}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Piano sperimentale}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Piano sperimentale B1: esecuzione individuale senza isolamento.}}{3}{table.4}\protected@file@percent }
+\newlabel{tab:b1}{{IV}{3}{Piano sperimentale B1: esecuzione individuale senza isolamento}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Latenza end-to-end e stabilità}{3}{subsection.2.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces B1: distribuzioni della latenza end-to-end dei modelli eseguiti singolarmente.}}{4}{figure.2}\protected@file@percent }
 \newlabel{fig:b1e2e}{{2}{4}{B1: distribuzioni della latenza end-to-end dei modelli eseguiti singolarmente}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces B1: confronto delle latenze di coda.}}{4}{figure.3}\protected@file@percent }
-\newlabel{fig:b1tail}{{3}{4}{B1: confronto delle latenze di coda}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces B1: distribuzioni della latenza di inferenza dei modelli eseguiti singolarmente.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:b1inf}{{3}{4}{B1: distribuzioni della latenza di inferenza dei modelli eseguiti singolarmente}{figure.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Composizione del tempo di elaborazione}{4}{subsection.2.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces B1: composizione dei tempi di elaborazione in prefill e decode.}}{4}{figure.4}\protected@file@percent }
 \newlabel{fig:b1phases}{{4}{4}{B1: composizione dei tempi di elaborazione in prefill e decode}{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Accuratezza}{4}{subsection.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces B1: accuratezza delle decisioni rispetto all’azione attesa.}}{5}{figure.5}\protected@file@percent }
-\newlabel{fig:b1accuracy}{{5}{5}{B1: accuratezza delle decisioni rispetto all’azione attesa}{figure.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}B2. Co-locazione}{5}{section.3}\protected@file@percent }
-\newlabel{sec:b2}{{III}{5}{B2. Co-locazione}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Piano sperimentale}{5}{subsection.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Piano sperimentale B2: co-locazione sulla GPU.}}{5}{table.5}\protected@file@percent }
-\newlabel{tab:b2}{{V}{5}{Piano sperimentale B2: co-locazione sulla GPU}{table.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Ritardo end-to-end e inferenza}{5}{subsection.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces B2: latenza end-to-end durante l’esecuzione simultanea.}}{5}{figure.6}\protected@file@percent }
-\newlabel{fig:b2e2e}{{6}{5}{B2: latenza end-to-end durante l’esecuzione simultanea}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Distribuzioni della latenza end-to-end nell'esecuzione individuale, utilizzate come riferimento per B2.}}{5}{figure.7}\protected@file@percent }
-\newlabel{fig:b2comparison}{{7}{5}{Distribuzioni della latenza end-to-end nell'esecuzione individuale, utilizzate come riferimento per B2}{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces B2: distribuzioni della latenza di inferenza.}}{5}{figure.8}\protected@file@percent }
-\newlabel{fig:b2inf}{{8}{5}{B2: distribuzioni della latenza di inferenza}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Stabilità}{6}{subsection.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces B2: jitter e variabilità dei tempi di inferenza.}}{6}{figure.9}\protected@file@percent }
-\newlabel{fig:b2jitter}{{9}{6}{B2: jitter e variabilità dei tempi di inferenza}{figure.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Fasi di elaborazione}{6}{subsection.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Composizione dei tempi di prefill e decode nel confronto B2.}}{6}{figure.10}\protected@file@percent }
-\newlabel{fig:b2phases}{{10}{6}{Composizione dei tempi di prefill e decode nel confronto B2}{figure.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces B2: confronto dei tempi di prefill e decode.}}{6}{figure.11}\protected@file@percent }
-\newlabel{fig:b2decode}{{11}{6}{B2: confronto dei tempi di prefill e decode}{figure.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}B3. Interferenze}{6}{section.4}\protected@file@percent }
-\newlabel{sec:b3}{{IV}{6}{B3. Interferenze}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Piano sperimentale}{6}{subsection.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Piano sperimentale B3: interferenze senza isolamento.}}{6}{table.6}\protected@file@percent }
-\newlabel{tab:b3}{{VI}{6}{Piano sperimentale B3: interferenze senza isolamento}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Degrado delle latenze e stabilità}{6}{subsection.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces B3: latenza di inferenza in presenza dei diversi carichi concorrenti.}}{7}{figure.12}\protected@file@percent }
-\newlabel{fig:b3inf}{{12}{7}{B3: latenza di inferenza in presenza dei diversi carichi concorrenti}{figure.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces B3: latenza end-to-end in presenza di interferenze.}}{7}{figure.13}\protected@file@percent }
-\newlabel{fig:b3e2e}{{13}{7}{B3: latenza end-to-end in presenza di interferenze}{figure.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Latenze di coda e stabilità}{7}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces B3: latenze di coda sotto interferenza.}}{7}{figure.14}\protected@file@percent }
-\newlabel{fig:b3tail}{{14}{7}{B3: latenze di coda sotto interferenza}{figure.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces B3: jitter e variabilità dell’inferenza sotto interferenza.}}{7}{figure.15}\protected@file@percent }
-\newlabel{fig:b3jitter}{{15}{7}{B3: jitter e variabilità dell’inferenza sotto interferenza}{figure.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Composizione dell'inferenza e utilizzo delle risorse}{7}{subsection.4.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Utilizzo delle risorse con mem\_stream senza isolamento; tutte le grandezze di utilizzo sono percentuali.}}{8}{table.7}\protected@file@percent }
-\newlabel{tab:resources}{{VII}{8}{Utilizzo delle risorse con mem\_stream senza isolamento; tutte le grandezze di utilizzo sono percentuali}{table.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces B3: ripartizione dei tempi di prefill e decode.}}{8}{figure.16}\protected@file@percent }
-\newlabel{fig:b3phases}{{16}{8}{B3: ripartizione dei tempi di prefill e decode}{figure.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces B3: andamento dell’utilizzo delle risorse per SemIf con carico mem\_stream.}}{8}{figure.17}\protected@file@percent }
-\newlabel{fig:b3semif}{{17}{8}{B3: andamento dell’utilizzo delle risorse per SemIf con carico mem\_stream}{figure.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces B3: andamento dell’utilizzo delle risorse per Gemma con carico mem\_stream.}}{8}{figure.18}\protected@file@percent }
-\newlabel{fig:b3gemma}{{18}{8}{B3: andamento dell’utilizzo delle risorse per Gemma con carico mem\_stream}{figure.18}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}B4. Isolamento}{9}{section.5}\protected@file@percent }
-\newlabel{sec:b4}{{V}{9}{B4. Isolamento}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Configurazione e piano sperimentale}{9}{subsection.5.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Piano sperimentale B4: interferenze e tecniche di isolamento.}}{9}{table.8}\protected@file@percent }
-\newlabel{tab:b4}{{VIII}{9}{Piano sperimentale B4: interferenze e tecniche di isolamento}{table.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Latenza end-to-end e inferenza}{9}{subsection.5.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces B4: effetto delle tecniche di isolamento sulla latenza end-to-end.}}{9}{figure.19}\protected@file@percent }
-\newlabel{fig:b4e2e}{{19}{9}{B4: effetto delle tecniche di isolamento sulla latenza end-to-end}{figure.19}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces B4: effetto dell’isolamento sulla latenza di inferenza.}}{9}{figure.20}\protected@file@percent }
-\newlabel{fig:b4inf}{{20}{9}{B4: effetto dell’isolamento sulla latenza di inferenza}{figure.20}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Latenze di coda e stabilità}{9}{subsection.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces B4: latenze di coda con isolamento.}}{10}{figure.21}\protected@file@percent }
-\newlabel{fig:b4tail}{{21}{10}{B4: latenze di coda con isolamento}{figure.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces B4: jitter e variabilità dell’inferenza con isolamento.}}{10}{figure.22}\protected@file@percent }
-\newlabel{fig:b4jitter}{{22}{10}{B4: jitter e variabilità dell’inferenza con isolamento}{figure.22}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Interpretazione dei risultati}{10}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VI}B5. Isolamento e co-locazione}{10}{section.6}\protected@file@percent }
-\newlabel{sec:b5}{{VI}{10}{B5. Isolamento e co-locazione}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Piano sperimentale}{10}{subsection.6.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Piano sperimentale B5: isolamento congiunto e selettivo in co-locazione.}}{10}{table.9}\protected@file@percent }
-\newlabel{tab:b5}{{IX}{10}{Piano sperimentale B5: isolamento congiunto e selettivo in co-locazione}{table.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Latenze e stabilità}{10}{subsection.6.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces B5: latenza di inferenza con isolamento in co-locazione.}}{10}{figure.23}\protected@file@percent }
-\newlabel{fig:b5inf}{{23}{10}{B5: latenza di inferenza con isolamento in co-locazione}{figure.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces B1: accuratezza delle decisioni rispetto all’azione attesa.}}{4}{figure.5}\protected@file@percent }
+\newlabel{fig:b1accuracy}{{5}{4}{B1: accuratezza delle decisioni rispetto all’azione attesa}{figure.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}B2. Co-locazione}{4}{section.3}\protected@file@percent }
+\newlabel{sec:b2}{{III}{4}{B2. Co-locazione}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Piano sperimentale}{4}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Piano sperimentale B2: co-locazione sulla GPU.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:b2}{{V}{4}{Piano sperimentale B2: co-locazione sulla GPU}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Ritardo end-to-end e inferenza}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Fasi di elaborazione}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces B2: confronto della latenza end-to-end tra baseline ed esecuzione simultanea.}}{5}{figure.6}\protected@file@percent }
+\newlabel{fig:b2e2e}{{6}{5}{B2: confronto della latenza end-to-end tra baseline ed esecuzione simultanea}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces B2: confronto della latenza di inferenza tra baseline e co-locazione.}}{5}{figure.7}\protected@file@percent }
+\newlabel{fig:b2inf}{{7}{5}{B2: confronto della latenza di inferenza tra baseline e co-locazione}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Composizione dei tempi di prefill e decode nel confronto B2.}}{5}{figure.8}\protected@file@percent }
+\newlabel{fig:b2phases}{{8}{5}{Composizione dei tempi di prefill e decode nel confronto B2}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces B2: confronto dei tempi di prefill e decode.}}{5}{figure.9}\protected@file@percent }
+\newlabel{fig:b2decode}{{9}{5}{B2: confronto dei tempi di prefill e decode}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}B3. Interferenze}{5}{section.4}\protected@file@percent }
+\newlabel{sec:b3}{{IV}{5}{B3. Interferenze}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Piano sperimentale}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Piano sperimentale B3: interferenze senza isolamento.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:b3}{{VI}{5}{Piano sperimentale B3: interferenze senza isolamento}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Degrado delle latenze e stabilità}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Distribuzioni della latenza end-to-end}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces B3: latenza di inferenza in presenza dei diversi carichi concorrenti.}}{6}{figure.10}\protected@file@percent }
+\newlabel{fig:b3inf}{{10}{6}{B3: latenza di inferenza in presenza dei diversi carichi concorrenti}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces B3: latenza end-to-end in presenza di interferenze.}}{6}{figure.11}\protected@file@percent }
+\newlabel{fig:b3e2e}{{11}{6}{B3: latenza end-to-end in presenza di interferenze}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces B3: densità di probabilità della latenza end-to-end per i due modelli.}}{6}{figure.12}\protected@file@percent }
+\newlabel{fig:b3pdf}{{12}{6}{B3: densità di probabilità della latenza end-to-end per i due modelli}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Composizione dell'inferenza e utilizzo delle risorse}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces B3: ripartizione dei tempi di prefill e decode.}}{6}{figure.13}\protected@file@percent }
+\newlabel{fig:b3phases}{{13}{6}{B3: ripartizione dei tempi di prefill e decode}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces B3: andamento dell’utilizzo delle risorse per SemIf con carico mem\_stream.}}{6}{figure.14}\protected@file@percent }
+\newlabel{fig:b3semif}{{14}{6}{B3: andamento dell’utilizzo delle risorse per SemIf con carico mem\_stream}{figure.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}B4. Isolamento}{6}{section.5}\protected@file@percent }
+\newlabel{sec:b4}{{V}{6}{B4. Isolamento}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Configurazione e piano sperimentale}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Utilizzo delle risorse con mem\_stream senza isolamento; tutte le grandezze di utilizzo sono percentuali.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:resources}{{VII}{7}{Utilizzo delle risorse con mem\_stream senza isolamento; tutte le grandezze di utilizzo sono percentuali}{table.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces B3: andamento dell’utilizzo delle risorse per Gemma con carico mem\_stream.}}{7}{figure.15}\protected@file@percent }
+\newlabel{fig:b3gemma}{{15}{7}{B3: andamento dell’utilizzo delle risorse per Gemma con carico mem\_stream}{figure.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Piano sperimentale B4: interferenze e tecniche di isolamento.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:b4}{{VIII}{7}{Piano sperimentale B4: interferenze e tecniche di isolamento}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Latenza end-to-end e inferenza}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces B4: effetto delle tecniche di isolamento sulla latenza end-to-end.}}{7}{figure.16}\protected@file@percent }
+\newlabel{fig:b4e2e}{{16}{7}{B4: effetto delle tecniche di isolamento sulla latenza end-to-end}{figure.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces B4: effetto dell’isolamento sulla latenza di inferenza.}}{7}{figure.17}\protected@file@percent }
+\newlabel{fig:b4inf}{{17}{7}{B4: effetto dell’isolamento sulla latenza di inferenza}{figure.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Distribuzioni della latenza end-to-end}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces B4: densità di probabilità della latenza end-to-end per i due modelli.}}{8}{figure.18}\protected@file@percent }
+\newlabel{fig:b4pdf}{{18}{8}{B4: densità di probabilità della latenza end-to-end per i due modelli}{figure.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Interpretazione dei risultati}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}B5. Isolamento e co-locazione}{8}{section.6}\protected@file@percent }
+\newlabel{sec:b5}{{VI}{8}{B5. Isolamento e co-locazione}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Piano sperimentale}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Latenze e stabilità}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Piano sperimentale B5: isolamento congiunto e selettivo in co-locazione.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:b5}{{IX}{8}{Piano sperimentale B5: isolamento congiunto e selettivo in co-locazione}{table.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces B5: latenza di inferenza con isolamento in co-locazione.}}{8}{figure.19}\protected@file@percent }
+\newlabel{fig:b5inf}{{19}{8}{B5: latenza di inferenza con isolamento in co-locazione}{figure.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces B5: latenza end-to-end con isolamento in co-locazione.}}{8}{figure.20}\protected@file@percent }
+\newlabel{fig:b5e2e}{{20}{8}{B5: latenza end-to-end con isolamento in co-locazione}{figure.20}{}}
 \citation{laya}
 \citation{ollaya}
 \citation{laya}
 \citation{ollaya}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces B5: latenza end-to-end con isolamento in co-locazione.}}{11}{figure.24}\protected@file@percent }
-\newlabel{fig:b5e2e}{{24}{11}{B5: latenza end-to-end con isolamento in co-locazione}{figure.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Latenze di coda e stabilità}{11}{subsection.6.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces B5: latenze di coda con isolamento in co-locazione.}}{11}{figure.25}\protected@file@percent }
-\newlabel{fig:b5tail}{{25}{11}{B5: latenze di coda con isolamento in co-locazione}{figure.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces B5: jitter e variabilità con isolamento in co-locazione.}}{11}{figure.26}\protected@file@percent }
-\newlabel{fig:b5jitter}{{26}{11}{B5: jitter e variabilità con isolamento in co-locazione}{figure.26}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Interpretazione dei risultati}{11}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusioni}{11}{section.7}\protected@file@percent }
-\newlabel{sec:conclusions}{{VII}{11}{Conclusioni}{section.7}{}}
 \bibcite{typesafe}{1}
 \bibcite{openjev}{2}
 \bibcite{gemma-core}{3}
@@ -139,5 +122,11 @@
 \bibcite{openjev-method}{5}
 \bibcite{laya}{6}
 \bibcite{ollaya}{7}
-\@writefile{toc}{\contentsline {section}{\bbl@ensure@italian  {Riferimenti bibliografici}}{12}{section*.1}\protected@file@percent }
-\gdef \@abspage@last{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Distribuzioni della latenza end-to-end}{9}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces B5: densità di probabilità della latenza end-to-end per i due modelli.}}{9}{figure.21}\protected@file@percent }
+\newlabel{fig:b5pdf}{{21}{9}{B5: densità di probabilità della latenza end-to-end per i due modelli}{figure.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Interpretazione dei risultati}{9}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusioni}{9}{section.7}\protected@file@percent }
+\newlabel{sec:conclusions}{{VII}{9}{Conclusioni}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\bbl@ensure@italian  {Riferimenti bibliografici}}{9}{section*.1}\protected@file@percent }
+\gdef \@abspage@last{9}
