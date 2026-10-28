@@ -188,57 +188,10 @@ Start the model servers first (wait until they are loaded):
 
 ```bash
 # Gemma 4 31B Q8 (main generative arm)
-~/llama.cpp/build/bin/llama-server -m ~/models/gemma-4-31B-it-Q8_0.gguf \
-  -ngl 99 -c 4096 -fa on --mlock -np 1 --reasoning-budget 0 \
-  --host 127.0.0.1 --port 8080 --metrics
+lama serve -hf unsloth/gemma-4-31B-it-GGUF:UD-Q8_K_XL -ngl 99 -c 4086 -fa on -np 1 --reasoning-budget 0 --host 127.0.0.1 --port 8080 --metrics --swa-ful
 
-# Qwen3.5-4B (generative control arm, only when needed)
-~/llama.cpp/build/bin/llama-server -m ~/models/Qwen3.5-4B-Q8_0.gguf \
-  -ngl 99 -c 4096 -fa on --mlock -np 1 --reasoning-budget 0 \
-  --host 127.0.0.1 --port 8081
 ```
 
-Then, in separate tmux windows (sensor_sim last, it starts the stream):
-
-```bash
-python3 ~/rtsia_ws/src/rtsia_bench/scripts/resource_logger.py --out resources_run1.csv
-
-ros2 run rtsia_bench logger --ros-args -p file:=runs.csv \
-  -p freq_hz:=2 -p interference:=none -p interference_level:=0 \
-  -p isolation:=none -p colocation:=yes -p repetition:=1
-
-ros2 run rtsia_bench semif_node
-ros2 run rtsia_bench llm_gen_node                     # Gemma, defaults
-ros2 run rtsia_bench llm_gen_node --ros-args \
-  -p url:=http://127.0.0.1:8081/v1/chat/completions \
-  -p system:=gen-qwen4b -p topic:=decision/qwen       # Qwen control arm
-
-ros2 run rtsia_bench sensor_sim --ros-args -p rate_hz:=2.0 -p seed:=42
-```
-
-For baselines start only one decision node. To test prompt caching off:
-`-p cache_prompt:=false`. Discard the first decisions of each run (warm-up).
-
-## Node parameters
-
-| Node | Parameter | Default |
-| --- | --- | --- |
-| sensor_sim | `rate_hz`, `seed`, `duration_s`, `max_samples` | 2.0, 42, 0 (no limit), 0 (no limit) |
-| semif_node | `system`, `model`, `revision`, `mode`, `dtype`, `warmup` | `semif-qwen4b`, `Qwen/Qwen3.5-4B`, pinned commit, `direct`, `bfloat16`, 3 |
-| llm_gen_node | `url`, `system`, `topic`, `cache_prompt`, `max_tokens` | port 8080, `gen-gemma31b`, `decision/gemma`, true, 32 |
-| logger | `file`, `run_id`, `freq_hz`, `interference`, `interference_level`, `isolation`, `colocation`, `repetition` | `runs.csv`, empty strings |
-
-## Interference and isolation by hand
-
-The scripts above start stress-ng and apply isolation automatically. By hand, the equivalent is:
-
-```bash
-stress-ng --matrix 4 --timeout 300s                    # cpu_matrix, level 4
-taskset -c 0-7 python -m rtsia_bench.semif_node        # pinning
-sudo chrt -f 50 python -m rtsia_bench.semif_node       # real-time priority
-```
-
-Check `nproc` first (12 cores on the 64 GB module) and keep an eye on swap in jtop: it must stay at zero.
 
 ## CSV columns (`runs.csv`)
 
