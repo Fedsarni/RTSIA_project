@@ -120,20 +120,35 @@ export ROS_SETUP=/opt/ros/humble/setup.bash  # usare jazzy su Ubuntu 24.04
 export R=/percorso/scelto/dall_utente/risultati  # OBBLIGATORIO: sostituire
 ```
 
-**Controllare il piano:**
+**Scegliere i piani:** aggiungere o togliere righe dall'elenco; può contenere un numero qualsiasi di campagne. Usare qui i piani a sette colonne per `run_campaign.sh`; `b9_cyclictest.plan` usa lo script separato descritto sotto.
 
 ```bash
-OUT_DIR="$R/b1" scripts/run_campaign.sh plans/b1_baseline.plan --csv b1.csv --dry-run
+PIANI=(
+  plans/b1_baseline.plan
+  plans/b2_frequency.plan
+)
 ```
 
-**Avviare la campagna B1:**
+**Controllare i piani senza eseguire run:**
 
 ```bash
-OUT_DIR="$R/b1" scripts/run_campaign.sh plans/b1_baseline.plan --csv b1.csv --skip-done --shuffle
+for PIANO in "${PIANI[@]}"; do
+  NOME=$(basename "$PIANO" .plan)
+  OUT_DIR="$R/$NOME" scripts/run_campaign.sh "$PIANO" --csv "$NOME.csv" --dry-run
+done
 ```
 
-`--skip-done` riprende la campagna e `--shuffle` mescola l'ordine dei run.
-`--csv b1.csv` scrive le decisioni in `$R/b1/b1.csv`. Nella stessa cartella: `runs_summary.csv` (riepilogo dei run), `resources_<run_id>.csv` (telemetria), `logs/<run_id>/` e `campaign_*.log`.
+**Avviare tutte le campagne scelte, una dopo l'altra:**
+
+```bash
+for PIANO in "${PIANI[@]}"; do
+  NOME=$(basename "$PIANO" .plan)
+  OUT_DIR="$R/$NOME" scripts/run_campaign.sh "$PIANO" \
+    --csv "$NOME.csv" --skip-done --shuffle
+done
+```
+
+Ogni piano produce `$R/<nome_piano>/<nome_piano>.csv`, `runs_summary.csv`, `resources_<run_id>.csv`, `logs/<run_id>/` e `campaign_*.log`. `--skip-done` salta i run già registrati; `--shuffle` mescola l'ordine dei run all'interno di ogni piano.
 
 **Singolo esperimento SemIf:**
 

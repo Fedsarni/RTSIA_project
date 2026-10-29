@@ -1,0 +1,95 @@
+[0.211s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.211s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=12, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffffbb1bf040>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffbb3b4df0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffbb3b4df0>>)
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.543s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.543s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.543s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.543s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.543s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.543s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench'
+[0.543s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.544s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.631s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_python' and name 'rtsia_bench'
+[0.631s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.631s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.631s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.631s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.631s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.669s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.669s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.671s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.673s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/orinagx/rtsia_ws/install
+[0.673s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install
+[0.675s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 184 installed packages in /opt/ros/humble
+[0.678s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'cmake_args' from command line to 'None'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'cmake_target' from command line to 'None'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'cmake_clean_cache' from command line to 'False'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'cmake_clean_first' from command line to 'False'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'cmake_force_configure' from command line to 'False'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'ament_cmake_args' from command line to 'None'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'catkin_cmake_args' from command line to 'None'
+[0.728s] Level 5:colcon.colcon_core.verb:set package 'rtsia_bench' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.728s] DEBUG:colcon.colcon_core.verb:Building package 'rtsia_bench' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench', 'merge_install': False, 'path': '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench', 'symlink_install': True, 'test_result_base': None}
+[0.728s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.730s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.731s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench' with build type 'ament_python'
+[0.731s] Level 1:colcon.colcon_core.shell:create_environment_hook('rtsia_bench', 'ament_prefix_path')
+[0.735s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.736s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/hook/ament_prefix_path.ps1'
+[0.737s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/hook/ament_prefix_path.dsv'
+[0.738s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/hook/ament_prefix_path.sh'
+[0.740s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.740s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.254s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench'
+[1.255s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.255s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.940s] DEBUG:colcon.colcon_core.task.python.build:Available setuptools commands: clean, install_lib, install, build, install_data, build_ext, easy_install, bdist, upload, rotate, symlink_data, install_egg_info, build_clib, build_py, install_headers, bdist_wheel, develop, sdist, check, egg_info, install_scripts, bdist_rpm, upload_docs, alias, saveopts, test, register, build_scripts, setopt, bdist_egg, bdist_dumb, dist_info
+[2.493s] DEBUG:colcon.colcon_core.task.python.build:Available setuptools 'develop' options: --version, --quiet, --exclude-scripts, --egg-path, --local-snapshots-ok, --user, --no-user-cfg, --zip-ok, --build-directory, --install-layout, --multi-version, --optimize, --uninstall, --prefix, --always-copy, --site-dirs, --help, --no-deps, --no-find-links, --force-installation-into-system-dir, --dry-run, --verbose, --upgrade, --script-dir, --record, --always-unzip, --editable, --install-dir, --index-url, --allow-hosts, --find-links
+[2.497s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench': PS1=(venv13) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv13) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/build --no-deps symlink_data
+[3.403s] Level 1:colcon.colcon_core.shell:create_environment_hook('rtsia_bench', 'pythonpath_develop')
+[3.404s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/share/rtsia_bench/hook/pythonpath_develop.ps1'
+[3.405s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench' returned '0': PS1=(venv13) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv13) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/build --no-deps symlink_data
+[3.407s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/share/rtsia_bench/hook/pythonpath_develop.dsv'
+[3.409s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/share/rtsia_bench/hook/pythonpath_develop.sh'
+[3.419s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench' for CMake module files
+[3.420s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench' for CMake config files
+[3.421s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib'
+[3.422s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/bin'
+[3.422s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/pkgconfig/rtsia_bench.pc'
+[3.422s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages'
+[3.423s] Level 1:colcon.colcon_core.shell:create_environment_hook('rtsia_bench', 'pythonpath')
+[3.423s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/hook/pythonpath.ps1'
+[3.425s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/hook/pythonpath.dsv'
+[3.426s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/hook/pythonpath.sh'
+[3.428s] Level 1:colcon.colcon_core.environment:checking '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/bin'
+[3.429s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rtsia_bench)
+[3.430s] INFO:colcon.colcon_core.shell:Creating package script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/package.ps1'
+[3.435s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/package.dsv'
+[3.437s] INFO:colcon.colcon_core.shell:Creating package script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/package.sh'
+[3.440s] INFO:colcon.colcon_core.shell:Creating package script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/package.bash'
+[3.443s] INFO:colcon.colcon_core.shell:Creating package script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench/package.zsh'
+[3.446s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/colcon-core/packages/rtsia_bench)
+[3.448s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[3.449s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[3.449s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[3.449s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[3.450s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[3.451s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/local_setup.ps1'
+[3.454s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/_local_setup_util_ps1.py'
+[3.460s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/setup.ps1'
+[3.465s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/local_setup.sh'
+[3.467s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/_local_setup_util_sh.py'
+[3.469s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/setup.sh'
+[3.472s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/local_setup.bash'
+[3.473s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/setup.bash'
+[3.476s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/local_setup.zsh'
+[3.478s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/setup.zsh'

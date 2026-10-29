@@ -1,0 +1,27 @@
+[1.765s] Invoking command in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench': PS1=(venv13) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv13) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/build --no-deps symlink_data
+[2.269s] running develop
+[2.594s] running egg_info
+[2.595s] creating rtsia_bench.egg-info
+[2.595s] writing rtsia_bench.egg-info/PKG-INFO
+[2.595s] writing dependency_links to rtsia_bench.egg-info/dependency_links.txt
+[2.595s] writing entry points to rtsia_bench.egg-info/entry_points.txt
+[2.595s] writing requirements to rtsia_bench.egg-info/requires.txt
+[2.596s] writing top-level names to rtsia_bench.egg-info/top_level.txt
+[2.596s] writing manifest file 'rtsia_bench.egg-info/SOURCES.txt'
+[2.599s] reading manifest file 'rtsia_bench.egg-info/SOURCES.txt'
+[2.601s] writing manifest file 'rtsia_bench.egg-info/SOURCES.txt'
+[2.603s] running build_ext
+[2.604s] Creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages/rtsia-bench.egg-link (link to .)
+[2.605s] Installing llm_gen_node script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+[2.606s] Installing logger script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+[2.606s] Installing semif_node script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+[2.606s] Installing sensor_sim script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+[2.606s] 
+[2.607s] Installed /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench
+[2.607s] running symlink_data
+[2.607s] creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index
+[2.607s] creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index/resource_index
+[2.607s] creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index/resource_index/packages
+[2.607s] symbolically linking /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/resource/rtsia_bench -> /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index/resource_index/packages
+[2.608s] symbolically linking /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/package.xml -> /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench
+[2.673s] Invoked command in '/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench' returned '0': PS1=(venv13) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv13) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/build --no-deps symlink_data

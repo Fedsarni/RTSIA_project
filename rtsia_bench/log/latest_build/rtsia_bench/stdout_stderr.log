@@ -1,0 +1,25 @@
+running develop
+running egg_info
+creating rtsia_bench.egg-info
+writing rtsia_bench.egg-info/PKG-INFO
+writing dependency_links to rtsia_bench.egg-info/dependency_links.txt
+writing entry points to rtsia_bench.egg-info/entry_points.txt
+writing requirements to rtsia_bench.egg-info/requires.txt
+writing top-level names to rtsia_bench.egg-info/top_level.txt
+writing manifest file 'rtsia_bench.egg-info/SOURCES.txt'
+reading manifest file 'rtsia_bench.egg-info/SOURCES.txt'
+writing manifest file 'rtsia_bench.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/python3.10/site-packages/rtsia-bench.egg-link (link to .)
+Installing llm_gen_node script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+Installing logger script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+Installing semif_node script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+Installing sensor_sim script to /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/lib/rtsia_bench
+
+Installed /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench
+running symlink_data
+creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index
+creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index/resource_index
+creating /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index/resource_index/packages
+symbolically linking /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/resource/rtsia_bench -> /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/ament_index/resource_index/packages
+symbolically linking /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/build/rtsia_bench/package.xml -> /home/orinagx/RTSIASarnataroTafuri/rtsia_bench/install/rtsia_bench/share/rtsia_bench

@@ -1,0 +1,6 @@
+[console_scripts]
+llm_gen_node = rtsia_bench.llm_gen_node:main
+logger = rtsia_bench.logger:main
+semif_node = rtsia_bench.semif_node:main
+sensor_sim = rtsia_bench.sensor_sim:main
+

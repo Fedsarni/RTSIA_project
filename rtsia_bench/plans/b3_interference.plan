@@ -1,0 +1,23 @@
+# B4 - Interference. Level = stress-ng workers (4 as in the reference project, 12 = all cores).
+# systems      stress        level  isolation  reps  duration_s  freq_hz
+# SemIf: every stressor, two levels
+semif          cpu_matrix       12     none       3     180         2
+semif          cpu_fft          12     none       3     180         2
+semif          mem_stream       12     none       3     180         2
+semif          mem_vm           12     none       3     180         2
+semif          cache_l1         12     none       3     180         2
+semif          sched_switch     12     none       3     180         2
+semif          rtapp_other     11      none       3     180         2
+semif          rtapp_fifo60    11      none   	  3     180         2
+semif          rtapp_burst60   11      none       3     180         2
+
+# Gemma: the most representative stressors, level 12
+gemma          cpu_matrix       12     none       3     300         2
+gemma          mem_stream       12     none       3     300         2
+gemma          sched_switch     12     none       3     300         2
+gemma          mem_vm           12     none       3     300         2
+gemma          cache_l1         12     none       3     300         2
+gemma          sched_switch     12     none       3     300         2
+gemma          rtapp_other      11     none       3     380         2
+gemma          rtapp_fifo60     11     none       3     300         2
+gemma          rtapp_burst60    11     none       3     300         2

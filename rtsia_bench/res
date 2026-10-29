@@ -1,0 +1,26 @@
+== Plan plans/b8_rtapp.plan: 24 runs, estimated 2 h 0 min
+   needs: sudo=true rt-app=true stress-ng=false
+  1  gemma_f2_rtapp_burst60x4_pin_prio_r1
+  2  semif_f2_rtapp_burst60x4_prio80_r1
+  3  semif_f2_rtapp_burst60x4_prio80_r3
+  4  semif_f2_rtapp_fifo60x4_prio80_r2
+  5  semif_f2_rtapp_fifo60x4_pin_r1
+  6  semif_f2_rtapp_burst60x4_pin_r2
+  7  semif_f2_rtapp_fifo60x4_prio80_r3
+  8  semif_f2_rtapp_burst60x4_pin_r3
+  9  semif_f2_rtapp_fifo60x4_prio_r2
+ 10  semif_f2_rtapp_burst60x4_prio80_r2
+ 11  gemma_f2_rtapp_burst60x4_prio_r2
+ 12  semif_f2_rtapp_fifo60x4_pin_prio80_r2
+ 13  semif_f2_rtapp_fifo60x4_pin_r3
+ 14  gemma_f2_rtapp_burst60x4_pin_prio_r2
+ 15  semif_f2_rtapp_burst60x4_pin_r1
+ 16  semif_f2_rtapp_fifo60x4_prio_r1
+ 17  semif_f2_rtapp_fifo60x4_pin_r2
+ 18  gemma_f2_rtapp_burst60x4_pin_prio_r3
+ 19  semif_f2_rtapp_fifo60x4_pin_prio80_r1
+ 20  semif_f2_rtapp_fifo60x4_prio_r3
+ 21  semif_f2_rtapp_fifo60x4_prio80_r1
+ 22  gemma_f2_rtapp_burst60x4_prio_r3
+ 23  semif_f2_rtapp_fifo60x4_pin_prio80_r3
+ 24  gemma_f2_rtapp_burst60x4_prio_r1

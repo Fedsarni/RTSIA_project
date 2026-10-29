@@ -1,0 +1,21 @@
+
+
+# DA RIVEDERE, SULLA BASE DEI RISULTATI DI B4
+# B6 - Colocation with isolation: SemIf and Gemma together, no stress.
+# Isolation applied to BOTH models, or to ONE model only (MODE@SYSTEM):
+#   pin@semif       SemIf on cores 0-7, Gemma confined to cores 8-11
+#   prio@semif      SemIf (node) at SCHED_FIFO 50, Gemma normal priority
+#   pin_prio@semif  both of the above
+#   ...@gemma       same, but Gemma (node + llama-server) is the protected one
+# Label in the CSV: pin@semif -> pin_semif, prio@gemma -> prio_gemma, ...
+# systems      stress  level  isolation        reps  duration_s  freq_hz
+semif,gemma    none    0      none             3     300         2
+semif,gemma    none    0      pin              3     300         2
+semif,gemma    none    0      prio             3     300         2
+semif,gemma    none    0      pin_prio         3     300         2
+semif,gemma    none    0      pin@semif        3     300         2
+semif,gemma    none    0      prio@semif       3     300         2
+semif,gemma    none    0      pin_prio@semif   3     300         2
+semif,gemma    none    0      pin@gemma        3     300         2
+semif,gemma    none    0      prio@gemma       3     300         2
+semif,gemma    none    0      pin_prio@gemma   3     300         2

@@ -1,0 +1,9 @@
+source;share/rtsia_bench/hook/pythonpath.ps1
+source;share/rtsia_bench/hook/pythonpath.dsv
+source;share/rtsia_bench/hook/pythonpath.sh
+source;share/rtsia_bench/hook/ament_prefix_path.ps1
+source;share/rtsia_bench/hook/ament_prefix_path.dsv
+source;share/rtsia_bench/hook/ament_prefix_path.sh
+source;../../build/rtsia_bench/share/rtsia_bench/hook/pythonpath_develop.ps1
+source;../../build/rtsia_bench/share/rtsia_bench/hook/pythonpath_develop.dsv
+source;../../build/rtsia_bench/share/rtsia_bench/hook/pythonpath_develop.sh

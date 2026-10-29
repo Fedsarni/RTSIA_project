@@ -1,5 +1,0 @@
-# B2 - Frequency sweep for SemIf (2 Hz is already in B1). Gemma is saturated even at 1 Hz.
-# systems      stress        level  isolation  reps  duration_s  freq_hz
-semif          none          0      none       3     120         1
-semif          none          0      none       3     120         3
-semif          none          0      none       3     120         5
